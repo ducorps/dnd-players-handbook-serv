@@ -4,7 +4,7 @@ public class Equipamento {
     private Long id;
     private String nome;
     private Double peso;
-    private Integer preco;
+    private Preco preco;
 
     public Long getId() {
         return id;
@@ -30,11 +30,11 @@ public class Equipamento {
         this.peso = peso;
     }
 
-    public Integer getPreco() {
+    public Preco getPreco() {
         return preco;
     }
 
-    public void setPreco(Integer preco) {
+    public void setPreco(Preco preco) {
         this.preco = preco;
     }
 }
