@@ -5,7 +5,7 @@ public class Magia {
     private String descricao;
     private Double alcance;
     private Integer duracao;
-    private Componente componente;
+    private Component component;
     private String objetoNecessario;
 
     public Integer getTempoConjuracao() { return tempoConjuracao; }
@@ -36,12 +36,12 @@ public class Magia {
         this.duracao = duracao;
     }
 
-    public Componente getComponente() {
-        return componente;
+    public Component getComponente() {
+        return component;
     }
 
-    public void setComponente(Componente componente) {
-        this.componente = componente;
+    public void setComponente(Component component) {
+        this.component = component;
     }
 
     public String getObjetoNecessario() {

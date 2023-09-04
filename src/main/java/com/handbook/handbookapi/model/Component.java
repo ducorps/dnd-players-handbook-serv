@@ -1,7 +1,7 @@
 package com.handbook.handbookapi.model;
 
-public enum Componente {
+public enum Component {
     VERBAL,
-    SOMATICO,
+    SOMATIC,
     MATERIAL
 }

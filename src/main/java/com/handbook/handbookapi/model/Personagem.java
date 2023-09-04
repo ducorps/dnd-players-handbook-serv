@@ -1,4 +1,4 @@
-zpackage com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model;
 
 public class Personagem {
     private String nome;
