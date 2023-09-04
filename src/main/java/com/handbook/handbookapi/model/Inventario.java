@@ -1,9 +1,8 @@
 package com.handbook.handbookapi.model;
 
 public class Inventario {
-    private Personagem personagem;
-    private List<Equipamento> equipamento;
     private Double pesoDisponivel;
+    private List<Equipamento> equipamento;
 
     public Double getPesoDisponivel() { return pesoDisponivel; }
 
