@@ -4,7 +4,7 @@ public class Personagem {
     private String nome;
     private Classe classe;
     private Integer nivel;
-    private Antecedente antecedente;
+    // private Antecedente antecedente;
     private Raca raca;
     private Usuario usuario;
     private Integer exp;
@@ -56,5 +56,5 @@ public class Personagem {
 
     // Magias
     // ???
-    // private List<Magias> magias
+    // private List<Magia> magias
 }
