@@ -1,11 +1,11 @@
 package com.handbook.handbookapi.model;
 
-public class Magias {
+public class Magia {
     private Integer tempoConjuracao;
     private String descricao;
     private Double alcance;
     private Integer duracao;
-    private Componentes componentes;
+    private Componente componente;
     private String objetoNecessario;
 
     public Integer getTempoConjuracao() { return tempoConjuracao; }
@@ -36,12 +36,12 @@ public class Magias {
         this.duracao = duracao;
     }
 
-    public Componentes getComponentes() {
-        return componentes;
+    public Componente getComponente() {
+        return componente;
     }
 
-    public void setComponentes(Componentes componentes) {
-        this.componentes = componentes;
+    public void setComponente(Componente componente) {
+        this.componente = componente;
     }
 
     public String getObjetoNecessario() {
