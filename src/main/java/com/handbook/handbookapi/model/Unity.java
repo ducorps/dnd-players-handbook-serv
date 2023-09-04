@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.model;
 
-public enum Unidade {
+public enum Unity {
     COBRE,
     PRATA,
     ELECTRO,
