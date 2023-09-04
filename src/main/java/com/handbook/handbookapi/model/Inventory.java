@@ -3,7 +3,7 @@ package com.handbook.handbookapi.model;
 import java.util.List;
 
 public class Inventory {
-    private Personagem character;
+    private Character character;
     private List<Equipment> equipment;
     private Double availableWeight;
 

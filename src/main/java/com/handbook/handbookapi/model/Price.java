@@ -2,7 +2,7 @@ package com.handbook.handbookapi.model;
 
 public class Price {
     private Integer quantity;
-    private Unity unity;
+    private Currency currency;
 
     public Integer getQuantity() {
         return quantity;
@@ -12,11 +12,11 @@ public class Price {
         this.quantity = quantity;
     }
 
-    public Unity getUnity() {
-        return unity;
+    public Currency getCurrency() {
+        return currency;
     }
 
-    public void setUnity(Unity unity) {
-        this.unity = unity;
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 }
