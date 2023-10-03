@@ -15,10 +15,7 @@ public enum Currency {
         this.copperValue = copperValue;
     }
 
-    public Integer convert(Currency target, Integer value) {
-        Integer valorAtual = this.copperValue * value;
-
-
-        return valorAtual / target.copperValue;
+    public Integer convert(Currency target, Integer quantity) {
+        return (this.copperValue * quantity) / target.copperValue;
     }
 }

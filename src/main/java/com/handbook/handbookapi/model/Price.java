@@ -20,7 +20,14 @@ public class Price {
         this.currency = currency;
     }
 
-    public Price convertPrice(Price origin, Currency target) {
-        origin.currency.convert()
+    public Price convertPrice(Price origin, Currency targetCurrency) {
+        Integer newQuantity = origin.currency.convert(targetCurrency, origin.getQuantity());
+
+        Price newPrice = new Price();
+
+        newPrice.setCurrency(targetCurrency);
+        newPrice.setQuantity(newQuantity);
+
+        return newPrice;
     }
 }
