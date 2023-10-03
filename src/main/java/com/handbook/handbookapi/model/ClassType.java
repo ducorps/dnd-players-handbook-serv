@@ -1,14 +1,15 @@
 package com.handbook.handbookapi.model;
 
 public enum ClassType {
-    WARRIOR,
     BARBARIAN,
-    THIEF,
-    RANGER,
-    DRUID,
+    BARD,
     CLERIC,
+    DRUID,
+    FIGHTER,
+    MONK,
     PALADIN,
-    WIZARD,
+    RANGER,
     SORCERER,
-    MONK
+    WARLOCK,
+    WIZARD
 }

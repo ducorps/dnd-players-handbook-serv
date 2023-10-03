@@ -1,8 +1,13 @@
 package com.handbook.handbookapi.model;
 
 public enum Race {
-    HUMAN,
-    ELF,
+    DRAGONBORN,
     DWARF,
-    GNOME
+    ELF,
+    GNOME,
+    HALF_ELF,
+    HALFLING,
+    HALF_ORC,
+    HUMAN,
+    TIEFLING
 }

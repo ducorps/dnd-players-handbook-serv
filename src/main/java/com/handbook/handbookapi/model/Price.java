@@ -19,4 +19,8 @@ public class Price {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
+
+    public Price convertPrice(Price origin, Currency target) {
+        origin.currency.convert()
+    }
 }
