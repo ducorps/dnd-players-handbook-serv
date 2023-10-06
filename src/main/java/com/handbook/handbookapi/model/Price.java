@@ -19,4 +19,15 @@ public class Price {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
+
+    public Price convertPrice(Price origin, Currency targetCurrency) {
+        Integer newQuantity = origin.currency.convert(targetCurrency, origin.getQuantity());
+
+        Price newPrice = new Price();
+
+        newPrice.setCurrency(targetCurrency);
+        newPrice.setQuantity(newQuantity);
+
+        return newPrice;
+    }
 }
