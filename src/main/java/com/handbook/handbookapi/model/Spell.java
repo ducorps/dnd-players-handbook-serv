@@ -1,9 +1,11 @@
 package com.handbook.handbookapi.model;
 
+import com.handbook.handbookapi.utils.AbstractEntity;
+
 import javax.persistence.*;
 
 @Entity
-public class Spell extends EntityId{
+public class Spell extends AbstractEntity {
 
     @Column(name="name", nullable = false)
     private String name;

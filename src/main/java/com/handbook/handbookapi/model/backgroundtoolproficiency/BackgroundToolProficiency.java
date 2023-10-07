@@ -1,6 +1,7 @@
-package com.handbook.handbookapi.model.background;
+package com.handbook.handbookapi.model.backgroundtoolproficiency;
 
-import com.handbook.handbookapi.model.ToolProficiency;
+import com.handbook.handbookapi.model.toolproficiency.ToolProficiency;
+import com.handbook.handbookapi.model.background.Background;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,14 +18,14 @@ import javax.persistence.*;
 public class BackgroundToolProficiency {
 
     @EmbeddedId
-    private BackgroudToolProficiencyKey id;
+    private BackgroundToolProficiencyKey id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("backgroundId")
     @JoinColumn(name = "background_id")
     private Background background;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("toolProficiencyId")
     @JoinColumn(name = "tool_proficiency_id")
     private ToolProficiency toolProficiency;

@@ -1,4 +1,6 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.skillproficiency;
+
+import com.handbook.handbookapi.model.Ability;
 
 public enum SkillProficiencyType {
     ACROBATICS(Ability.DEXTERITY),
