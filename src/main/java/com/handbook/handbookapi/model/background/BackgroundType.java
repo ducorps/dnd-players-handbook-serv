@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.background;
 
 public enum BackgroundType {
     ACOLYTE,

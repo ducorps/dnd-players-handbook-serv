@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.repositories;
 
-import com.handbook.handbookapi.model.Background;
+import com.handbook.handbookapi.model.background.Background;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

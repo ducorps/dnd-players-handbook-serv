@@ -1,40 +1,28 @@
 package com.handbook.handbookapi.model;
 
-public class Equipment {
-    private Long id;
+import com.handbook.handbookapi.abstracts.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@MappedSuperclass
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Equipment extends AbstractEntity {
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "weight", nullable = false)
     private Double weight;
+
+    @ManyToOne
+    @JoinColumn(name = "price_id")
     private Price price;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public Price getPrice() {
-        return price;
-    }
-
-    public void setPrice(Price price) {
-        this.price = price;
-    }
 }
