@@ -1,5 +1,7 @@
 package com.handbook.handbookapi.model;
 
+import com.handbook.handbookapi.model.background.Background;
+
 import java.util.List;
 
 public class Character {
