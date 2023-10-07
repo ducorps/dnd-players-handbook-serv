@@ -1,13 +1,37 @@
 package com.handbook.handbookapi.model;
 
-public class Spell {
+import javax.persistence.*;
+
+@Entity
+public class Spell extends EntityId{
+
+    @Column(name="name", nullable = false)
     private String name;
+
+    @Column(name = "casting_time", nullable = false)
     private Integer castingTime;
+
+    @Column(name = "description", nullable = false)
     private String description;
+
+    @Column(name = "range", nullable = false)
     private Double range;
+
+    @Column(name = "duration", nullable = false)
     private Integer duration;
+
+    @Column(name = "component", nullable = false)
     private Component component;
+
+    @Column(name = "necessary_objects")
     private String necessaryObject;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "spell_component",
+            joinColumns = @JoinColumn(name = "spell_id"),
+            inverseJoinColumns = @JoinColumn(name = "component_id")
+    )
 
     public String getName() {
         return name;
