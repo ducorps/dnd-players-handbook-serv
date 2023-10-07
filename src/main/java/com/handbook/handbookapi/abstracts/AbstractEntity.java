@@ -1,10 +1,12 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.abstracts;
+
+import com.handbook.handbookapi.model.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @MappedSuperclass
-public class AbstractEntity implements BaseEntity{
+public class AbstractEntity implements BaseEntity {
 
     public static final String SEQUENCE_GENERATOR = "seq";
 

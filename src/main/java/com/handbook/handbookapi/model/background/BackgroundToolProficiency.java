@@ -1,5 +1,6 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.background;
 
+import com.handbook.handbookapi.model.ToolProficiency;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,17 +15,17 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class BackgroundToolProficiency {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_background_tool_proficiency")
-    @SequenceGenerator(name = "seq_background_tool_proficiency", sequenceName = "seq_background_tool_proficiency")
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+
+    @EmbeddedId
+    private BackgroudToolProficiencyKey id;
 
     @ManyToOne
+    @MapsId("backgroundId")
     @JoinColumn(name = "background_id")
     private Background background;
 
     @ManyToOne
+    @MapsId("toolProficiencyId")
     @JoinColumn(name = "tool_proficiency_id")
     private ToolProficiency toolProficiency;
 }
