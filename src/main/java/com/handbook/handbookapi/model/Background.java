@@ -13,13 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Background {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_background")
-    @SequenceGenerator(name = "seq_background", sequenceName = "seq_background")
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_background")
+public class Background extends AbstractEntity {
 
     @Column(name = "background_type", nullable = false)
     private BackgroundType backgroundType;
