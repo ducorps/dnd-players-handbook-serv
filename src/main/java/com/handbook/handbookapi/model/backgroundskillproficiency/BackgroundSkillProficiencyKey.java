@@ -1,12 +1,10 @@
-package com.handbook.handbookapi.model.background;
-
-import com.handbook.handbookapi.model.SkillProficiency;
+package com.handbook.handbookapi.model.backgroundskillproficiency;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class BackgroudSkillProficiencyKey {
+public class BackgroundSkillProficiencyKey {
 
     @Column(name = "background_id")
     private Long backgroundId;

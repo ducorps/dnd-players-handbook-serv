@@ -1,7 +1,7 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.equipment;
 
 
-import com.handbook.handbookapi.abstracts.AbstractEntity;
+import com.handbook.handbookapi.utils.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

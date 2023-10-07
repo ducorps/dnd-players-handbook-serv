@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.services;
+package com.handbook.handbookapi.utils;
 
 import com.handbook.handbookapi.model.BaseEntity;
 

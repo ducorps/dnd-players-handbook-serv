@@ -1,12 +1,10 @@
-package com.handbook.handbookapi.model.background;
-
-import com.handbook.handbookapi.model.ToolProficiency;
+package com.handbook.handbookapi.model.backgroundtoolproficiency;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class BackgroudToolProficiencyKey {
+public class BackgroundToolProficiencyKey {
 
     @Column(name = "background_id")
     private Long backgroundId;

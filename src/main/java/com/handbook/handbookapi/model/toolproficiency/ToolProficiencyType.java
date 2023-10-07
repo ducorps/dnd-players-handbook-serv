@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.toolproficiency;
 
 public enum ToolProficiencyType {
     ALCHEMISTS_SUPPLIES,

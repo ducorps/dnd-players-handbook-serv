@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.model.background;
 
-import com.handbook.handbookapi.abstracts.AbstractEntity;
+import com.handbook.handbookapi.utils.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

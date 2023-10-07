@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.services;
 
-import com.handbook.handbookapi.abstracts.AbstractService;
+import com.handbook.handbookapi.utils.AbstractService;
 import com.handbook.handbookapi.model.background.Background;
 import com.handbook.handbookapi.repositories.BackgroundRepository;
 import org.springframework.beans.factory.annotation.Autowired;
