@@ -12,8 +12,20 @@ public class InventoryService extends AbstractService<Inventory, Long> {
     @Autowired
     private InventoryRepository inventoryRepository;
 
+    @Autowired
+    private EquipmentService equipmentService;
+
     @Override
     protected JpaRepository<Inventory, Long> getRepository() {
         return inventoryRepository;
+    }
+
+    @Override
+    public Inventory save(Inventory inventory) {
+        if(equipmentService.getSumOfAllInventoryEquipment(inventory.getId()) > inventory.getCapacity()) {
+            throw new MaximumWeightException();
+        }
+
+        return super.save(inventory);
     }
 }
