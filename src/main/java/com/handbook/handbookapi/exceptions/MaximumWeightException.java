@@ -1,8 +1,8 @@
 package com.handbook.handbookapi.exceptions;
 
-public class PesoMaximoException extends Exception {
+public class MaximumWeightException extends Exception {
 
-    public PesoMaximoException() {
+    public MaximumWeightException() {
         super("O peso máximo do inventário não pode ser ultrapassado");
     }
 }

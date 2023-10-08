@@ -1,7 +1,7 @@
-package com.handbook.handbookapi.abstracts;
+package com.handbook.handbookapi.utils;
 
 import com.handbook.handbookapi.model.BaseEntity;
-import com.handbook.handbookapi.services.BaseService;
+import com.handbook.handbookapi.utils.BaseService;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
