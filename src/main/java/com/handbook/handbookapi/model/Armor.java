@@ -1,31 +1,35 @@
 package com.handbook.handbookapi.model;
 
+
+import com.handbook.handbookapi.abstracts.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "price")
+@PrimaryKeyJoinColumn(name="equipment_id")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_armor")
 public class Armor extends Equipment {
+
+    @Column(name = "strength", nullable = false)
     private Integer strength;
+
+    @Column(name = "stealth", nullable = false)
     private Boolean stealth;
+
+    @Column(name = "armor_class", nullable = false)
     private Integer armorClass;
 
-    public Integer getStrength() {
-        return strength;
-    }
+    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ArmorType type;
 
-    public void setStrength(Integer strength) {
-        this.strength = strength;
-    }
-
-    public Boolean getStealth() {
-        return stealth;
-    }
-
-    public void setStealth(Boolean stealth) {
-        this.stealth = stealth;
-    }
-
-    public Integer getArmorClass() {
-        return armorClass;
-    }
-
-    public void setArmorClass(Integer armorClass) {
-        this.armorClass = armorClass;
-    }
 }
