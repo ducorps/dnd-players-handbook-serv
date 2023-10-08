@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.price;
 
 import com.handbook.handbookapi.utils.AbstractEntity;
 import lombok.AllArgsConstructor;
@@ -22,9 +22,9 @@ public class Price extends AbstractEntity {
 
     @Column(name = "currency", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Currency currency;
+    private CurrencyType currency;
 
-    public Price convertPrice(Price origin, Currency targetCurrency) {
+    public Price convertPrice(Price origin, CurrencyType targetCurrency) {
         Integer newQuantity = origin.currency.convert(targetCurrency, origin.getQuantity());
 
         Price newPrice = new Price();
