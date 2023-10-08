@@ -1,8 +1,6 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.price;
 
-import java.util.List;
-
-public enum Currency {
+public enum CurrencyType {
     COPPER(1),
     SILVER(10),
     ELECTRUM(50),
@@ -11,11 +9,11 @@ public enum Currency {
 
     private Integer copperValue;
 
-    Currency(Integer copperValue) {
+    CurrencyType(Integer copperValue) {
         this.copperValue = copperValue;
     }
 
-    public Integer convert(Currency target, Integer quantity) {
+    public Integer convert(CurrencyType target, Integer quantity) {
         return (this.copperValue * quantity) / target.copperValue;
     }
 }
