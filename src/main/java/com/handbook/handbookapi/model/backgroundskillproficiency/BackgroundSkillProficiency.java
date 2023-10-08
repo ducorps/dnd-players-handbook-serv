@@ -1,5 +1,7 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.backgroundskillproficiency;
 
+import com.handbook.handbookapi.model.skillproficiency.SkillProficiency;
+import com.handbook.handbookapi.model.background.Background;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +17,16 @@ import javax.persistence.*;
 @Setter
 public class BackgroundSkillProficiency {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_background_skill_proficiency")
-    @SequenceGenerator(name = "seq_background_skill_proficiency", sequenceName = "seq_background_skill_proficiency")
-    @Column(name = "id", unique = true, nullable = false)
-    private Long id;
+    @EmbeddedId
+    private BackgroundSkillProficiencyKey id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("backgroundId")
     @JoinColumn(name = "background_id")
     private Background background;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("skillProficiencyId")
     @JoinColumn(name = "skill_proficiency_id")
     private SkillProficiency skillProficiency;
 }

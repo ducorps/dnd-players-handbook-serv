@@ -1,4 +1,10 @@
-package com.handbook.handbookapi.model;
+package com.handbook.handbookapi.model.character;
+
+import com.handbook.handbookapi.model.Language;
+import com.handbook.handbookapi.model.Race;
+import com.handbook.handbookapi.model.Spell;
+import com.handbook.handbookapi.model.User;
+import com.handbook.handbookapi.model.background.Background;
 
 import java.util.List;
 

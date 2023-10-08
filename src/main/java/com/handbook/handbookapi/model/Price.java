@@ -1,24 +1,28 @@
 package com.handbook.handbookapi.model;
 
-public class Price {
+import com.handbook.handbookapi.utils.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "price")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_price")
+public class Price extends AbstractEntity {
+
+    @Column(name = "quantity", nullable = false)
     private Integer quantity;
+
+    @Column(name = "currency", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Currency currency;
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
 
     public Price convertPrice(Price origin, Currency targetCurrency) {
         Integer newQuantity = origin.currency.convert(targetCurrency, origin.getQuantity());
@@ -31,3 +35,5 @@ public class Price {
         return newPrice;
     }
 }
+
+

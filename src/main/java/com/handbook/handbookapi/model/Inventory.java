@@ -1,17 +1,36 @@
 package com.handbook.handbookapi.model;
 
+import com.handbook.handbookapi.utils.AbstractEntity;
+import com.handbook.handbookapi.model.character.Character;
+import com.handbook.handbookapi.model.equipment.Equipment;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.util.List;
 
-public class Inventory {
-    private Character character;
+@Entity
+@Table(name = "background")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_inventory")
+public class Inventory extends AbstractEntity {
+
+//    @OneToOne
+//    @JoinColumn(name = "character_id", referencedColumnName = "id")
+//    private Character character;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "inventory_equipment",
+            joinColumns = @JoinColumn(name = "inventory_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipment_id"))
     private List<Equipment> equipment;
-    private Double availableWeight;
 
-    public Double getAvailableWeight() { return availableWeight; }
+    private Double capacity;
 
-    public void setAvailableWeight(Double availableWeight) { this.availableWeight = availableWeight; }
-
-    public List<Equipment> getEquipment() { return equipment; }
-
-    public void setEquipment(List<Equipment> equipment) { this.equipment = equipment; }
 }

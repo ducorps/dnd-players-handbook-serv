@@ -1,10 +1,12 @@
 package com.handbook.handbookapi.model;
 
+import com.handbook.handbookapi.utils.AbstractEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class Skill extends EntityId{
+public class Skill extends AbstractEntity {
 
     @Column(name = "acrobatics", nullable = false)
     private Integer acrobatics;
