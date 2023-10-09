@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "price")
+@Table(name = "armor")
 @PrimaryKeyJoinColumn(name="equipment_id")
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_armor")
 public class Armor extends Equipment {
