@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "background")
+@Table(name = "inventory")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,9 +20,9 @@ import java.util.List;
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_inventory")
 public class Inventory extends AbstractEntity {
 
-//    @OneToOne
-//    @JoinColumn(name = "character_id", referencedColumnName = "id")
-//    private Character character;
+    @OneToOne
+    @JoinColumn(name = "character_id", referencedColumnName = "id")
+    private Character character;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
