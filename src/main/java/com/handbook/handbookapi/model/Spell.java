@@ -1,10 +1,20 @@
 package com.handbook.handbookapi.model;
 
 import com.handbook.handbookapi.utils.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "spell")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_spell")
 public class Spell extends AbstractEntity {
     @Column(name="name", nullable = false)
     private String name;
@@ -27,66 +37,10 @@ public class Spell extends AbstractEntity {
     @Column(name = "necessary_objects")
     private String necessaryObject;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "spell_component",
-            joinColumns = @JoinColumn(name = "spell_id"),
-            inverseJoinColumns = @JoinColumn(name = "component_id")
-    )
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getCastingTime() {
-        return castingTime;
-    }
-
-    public void setCastingTime(Integer castingTime) {
-        this.castingTime = castingTime;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Double getRange() {
-        return range;
-    }
-
-    public void setRange(Double range) {
-        this.range = range;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public ComponentType getComponent() {
-        return componentType;
-    }
-
-    public void setComponent(ComponentType componentType) {
-        this.componentType = componentType;
-    }
-
-    public String getNecessaryObject() {
-        return necessaryObject;
-    }
-
-    public void setNecessaryObject(String necessaryObject) {
-        this.necessaryObject = necessaryObject;
-    }
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "spell_component",
+//            joinColumns = @JoinColumn(name = "spell_id"),
+//            inverseJoinColumns = @JoinColumn(name = "component_id")
+//    )
 }

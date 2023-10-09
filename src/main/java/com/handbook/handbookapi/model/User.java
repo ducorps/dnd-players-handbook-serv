@@ -1,15 +1,21 @@
 package com.handbook.handbookapi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.handbook.handbookapi.utils.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
-public class User {
-    @Id
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "user")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_user")
+public class User extends AbstractEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -18,36 +24,4 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.JOINED)
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_item")
 public class Item extends AbstractEntity {
     @Column(name = "name", nullable = false)
     private String name;
