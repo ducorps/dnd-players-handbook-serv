@@ -2,6 +2,7 @@ package com.handbook.handbookapi.model.character;
 
 import com.handbook.handbookapi.model.*;
 import com.handbook.handbookapi.model.background.Background;
+import com.handbook.handbookapi.utils.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Character {
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_character")
+public class Character extends AbstractEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -32,7 +34,7 @@ public class Character {
     private Background background;
 
     @ManyToOne
-    // @JoinColumn(name = "race_id", referencedColumnName = "id")
+//    @JoinColumn(name = "race_id", referencedColumnName = "id")
     @Column(name = "race_type", nullable = false)
     private RaceType raceType;
 
@@ -49,8 +51,8 @@ public class Character {
     @Column(name = "armor_class", nullable = false)
     private Integer armorClass;
 
-    @Column(name = "iniciative", nullable = false)
-    private Integer iniciative;
+    @Column(name = "initiative", nullable = false)
+    private Integer initiative;
 
     @Column(name = "move_speed", nullable = false)
     private Integer moveSpeed;

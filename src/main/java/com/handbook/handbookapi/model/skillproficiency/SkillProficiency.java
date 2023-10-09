@@ -9,10 +9,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "skill_proficiency")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SkillProficiency {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_skill_proficiencies")

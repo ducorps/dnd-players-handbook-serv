@@ -1,11 +1,23 @@
 package com.handbook.handbookapi.model;
 
 import com.handbook.handbookapi.utils.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "skill")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_skill")
 public class Skill extends AbstractEntity {
     @Column(name = "acrobatics", nullable = false)
     private Integer acrobatics;

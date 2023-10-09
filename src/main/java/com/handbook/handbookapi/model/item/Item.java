@@ -11,12 +11,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+@MappedSuperclass
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@MappedSuperclass
+@AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_item")
 public class Item extends AbstractEntity {
     @Column(name = "name", nullable = false)
     private String name;
