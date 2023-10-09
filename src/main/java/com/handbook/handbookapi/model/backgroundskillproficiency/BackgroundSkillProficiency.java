@@ -11,10 +11,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "background_skill_proficiency")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BackgroundSkillProficiency {
     @EmbeddedId
     private BackgroundSkillProficiencyKey id;

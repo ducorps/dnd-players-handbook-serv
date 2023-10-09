@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public class InventoryService extends AbstractService<Inventory, Long> {
-
     @Autowired
     private InventoryRepository inventoryRepository;
 

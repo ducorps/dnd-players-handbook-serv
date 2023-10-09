@@ -13,10 +13,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "inventory")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_inventory")
 public class Inventory extends AbstractEntity {
     @OneToOne

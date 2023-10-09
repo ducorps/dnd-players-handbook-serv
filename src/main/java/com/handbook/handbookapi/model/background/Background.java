@@ -10,10 +10,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "background")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_background")
 public class Background extends AbstractEntity {
     @Column(name = "background_type", nullable = false)

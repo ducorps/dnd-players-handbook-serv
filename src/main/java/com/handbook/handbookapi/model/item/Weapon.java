@@ -9,12 +9,12 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "weapon")
+@PrimaryKeyJoinColumn(name="item_id")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "weapon")
-@PrimaryKeyJoinColumn(name="item_id")
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_weapon")
 public class Weapon extends Item {
     @Column(name = "damage", nullable = false)
