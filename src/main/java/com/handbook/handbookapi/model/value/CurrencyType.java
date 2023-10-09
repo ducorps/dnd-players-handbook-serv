@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.model.price;
+package com.handbook.handbookapi.model.value;
 
 public enum CurrencyType {
     COPPER(1),
@@ -13,7 +13,7 @@ public enum CurrencyType {
         this.copperValue = copperValue;
     }
 
-    public Integer convert(CurrencyType target, Integer quantity) {
-        return (this.copperValue * quantity) / target.copperValue;
+    public Integer convert(CurrencyType target, Integer amount) {
+        return (this.copperValue * amount) / target.copperValue;
     }
 }

@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.model;
 
-public enum Language {
+public enum LanguageType {
     COMMON,
     DWARVISH,
     ELVISH,

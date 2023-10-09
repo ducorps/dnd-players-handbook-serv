@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/inventory")
 public class InventoryController {
-
     @Autowired
     private InventoryService inventoryService;
 

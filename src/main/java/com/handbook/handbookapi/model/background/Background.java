@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Setter
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_background")
 public class Background extends AbstractEntity {
-
     @Column(name = "background_type", nullable = false)
     private BackgroundType backgroundType;
 

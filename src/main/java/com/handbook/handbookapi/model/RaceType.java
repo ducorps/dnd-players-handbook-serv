@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.model;
 
-public enum Race {
+public enum RaceType {
     DRAGONBORN,
     DWARF,
     ELF,

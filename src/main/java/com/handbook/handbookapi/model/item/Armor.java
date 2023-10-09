@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.model.equipment;
+package com.handbook.handbookapi.model.item;
 
 
 import com.handbook.handbookapi.utils.AbstractEntity;
@@ -15,10 +15,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "armor")
-@PrimaryKeyJoinColumn(name="equipment_id")
+@PrimaryKeyJoinColumn(name="item_id")
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_armor")
-public class Armor extends Equipment {
-
+public class Armor extends Item {
     @Column(name = "strength", nullable = false)
     private Integer strength;
 
@@ -28,8 +27,8 @@ public class Armor extends Equipment {
     @Column(name = "armor_class", nullable = false)
     private Integer armorClass;
 
-    @Column(name = "type", nullable = false)
+    @Column(name = "armor_type", nullable = false)
     @Enumerated(EnumType.STRING)
-    private ArmorType type;
+    private ArmorType armorType;
 
 }

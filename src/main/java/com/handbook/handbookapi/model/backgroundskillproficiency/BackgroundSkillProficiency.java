@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class BackgroundSkillProficiency {
-
     @EmbeddedId
     private BackgroundSkillProficiencyKey id;
 

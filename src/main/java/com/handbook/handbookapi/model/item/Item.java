@@ -1,8 +1,8 @@
-package com.handbook.handbookapi.model.equipment;
+package com.handbook.handbookapi.model.item;
 
 import com.handbook.handbookapi.model.Inventory;
 import com.handbook.handbookapi.utils.AbstractEntity;
-import com.handbook.handbookapi.model.price.Price;
+import com.handbook.handbookapi.model.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Equipment extends AbstractEntity {
-
+public class Item extends AbstractEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -26,9 +25,9 @@ public class Equipment extends AbstractEntity {
     private Double weight;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "price_id")
-    private Price price;
+    @JoinColumn(name = "value_id")
+    private Value value;
 
-    @ManyToMany(mappedBy = "equipment", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "item", fetch = FetchType.LAZY)
     List<Inventory> inventories;
 }

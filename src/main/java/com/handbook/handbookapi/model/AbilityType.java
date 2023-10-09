@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.model;
 
-public enum Ability {
+public enum AbilityType {
     STRENGTH,
     DEXTERITY,
     CONSTITUTION,

@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class SkillProficiency {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_skill_proficiencies")
     @SequenceGenerator(name = "seq_skill_proficiencies", sequenceName = "seq_skill_proficiencies")
