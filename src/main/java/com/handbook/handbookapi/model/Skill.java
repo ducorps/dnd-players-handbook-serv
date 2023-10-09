@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 
 @Entity
 public class Skill extends AbstractEntity {
-
     @Column(name = "acrobatics", nullable = false)
     private Integer acrobatics;
 
@@ -61,5 +60,4 @@ public class Skill extends AbstractEntity {
 
     @Column(name = "deception", nullable = false)
     private Integer deception;
-
 }

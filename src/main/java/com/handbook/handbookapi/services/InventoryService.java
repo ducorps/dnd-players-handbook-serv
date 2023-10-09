@@ -13,7 +13,7 @@ public class InventoryService extends AbstractService<Inventory, Long> {
     private InventoryRepository inventoryRepository;
 
     @Autowired
-    private EquipmentService equipmentService;
+    private ItemService itemService;
 
     @Override
     protected JpaRepository<Inventory, Long> getRepository() {
@@ -22,7 +22,7 @@ public class InventoryService extends AbstractService<Inventory, Long> {
 
     @Override
     public Inventory save(Inventory inventory) {
-        if(equipmentService.getSumOfAllInventoryEquipment(inventory.getId()) > inventory.getCapacity()) {
+        if(itemService.getSumOfAllInventoryEquipment(inventory.getId()) > inventory.getCapacity()) {
             throw new MaximumWeightException();
         }
 

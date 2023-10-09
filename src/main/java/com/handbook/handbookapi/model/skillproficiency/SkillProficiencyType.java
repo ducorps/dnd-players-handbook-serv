@@ -1,30 +1,30 @@
 package com.handbook.handbookapi.model.skillproficiency;
 
-import com.handbook.handbookapi.model.Ability;
+import com.handbook.handbookapi.model.AbilityType;
 
 public enum SkillProficiencyType {
-    ACROBATICS(Ability.DEXTERITY),
-    ANIMAL_HANDLING(Ability.WISDOM),
-    ARCANA(Ability.INTELLIGENCE),
-    ATHLETICS(Ability.STRENGTH),
-    DECEPTION(Ability.CHARISMA),
-    HISTORY(Ability.INTELLIGENCE),
-    INSIGHT(Ability.WISDOM),
-    INTIMIDATION(Ability.CHARISMA),
-    INVESTIGATION(Ability.INTELLIGENCE),
-    MEDICINE(Ability.WISDOM),
-    NATURE(Ability.INTELLIGENCE),
-    PERCEPTION(Ability.WISDOM),
-    PERFORMANCE(Ability.CHARISMA),
-    PERSUASION(Ability.CHARISMA),
-    RELIGION(Ability.INTELLIGENCE),
-    SLEIGHT_OF_HAND(Ability.DEXTERITY),
-    STEALTH(Ability.DEXTERITY),
-    SURVIVAL(Ability.WISDOM);
+    ACROBATICS(AbilityType.DEXTERITY),
+    ANIMAL_HANDLING(AbilityType.WISDOM),
+    ARCANA(AbilityType.INTELLIGENCE),
+    ATHLETICS(AbilityType.STRENGTH),
+    DECEPTION(AbilityType.CHARISMA),
+    HISTORY(AbilityType.INTELLIGENCE),
+    INSIGHT(AbilityType.WISDOM),
+    INTIMIDATION(AbilityType.CHARISMA),
+    INVESTIGATION(AbilityType.INTELLIGENCE),
+    MEDICINE(AbilityType.WISDOM),
+    NATURE(AbilityType.INTELLIGENCE),
+    PERCEPTION(AbilityType.WISDOM),
+    PERFORMANCE(AbilityType.CHARISMA),
+    PERSUASION(AbilityType.CHARISMA),
+    RELIGION(AbilityType.INTELLIGENCE),
+    SLEIGHT_OF_HAND(AbilityType.DEXTERITY),
+    STEALTH(AbilityType.DEXTERITY),
+    SURVIVAL(AbilityType.WISDOM);
 
-    private Ability ability;
+    private AbilityType abilityType;
 
-    SkillProficiencyType(Ability ability) {
+    SkillProficiencyType(AbilityType abilityType) {
 
     }
 }

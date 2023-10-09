@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.model.equipment;
+package com.handbook.handbookapi.model.item;
 
 import com.handbook.handbookapi.utils.AbstractEntity;
 import lombok.AllArgsConstructor;
@@ -14,10 +14,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "weapon")
-@PrimaryKeyJoinColumn(name="equipment_id")
+@PrimaryKeyJoinColumn(name="item_id")
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_weapon")
-public class Weapon extends Equipment {
-
+public class Weapon extends Item {
     @Column(name = "damage", nullable = false)
     private Double damage;
 

@@ -3,7 +3,6 @@ package com.handbook.handbookapi.utils;
 import com.handbook.handbookapi.model.BaseEntity;
 
 public interface BaseService<T extends BaseEntity, ID> {
-
     /**
      * Get all entities, if not exist return empty collection
      *

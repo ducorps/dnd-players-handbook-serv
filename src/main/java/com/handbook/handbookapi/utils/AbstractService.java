@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Service
 public abstract class AbstractService<T extends BaseEntity, ID> implements BaseService<T, Long> {
-
     protected abstract JpaRepository<T, Long> getRepository();
 
     @Override

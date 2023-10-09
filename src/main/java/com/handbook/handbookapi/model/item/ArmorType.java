@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.model.equipment;
+package com.handbook.handbookapi.model.item;
 
 public enum ArmorType {
     LIGHT,

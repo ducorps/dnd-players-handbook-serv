@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 public class Spell extends AbstractEntity {
-
     @Column(name="name", nullable = false)
     private String name;
 
@@ -23,7 +22,7 @@ public class Spell extends AbstractEntity {
     private Integer duration;
 
     @Column(name = "component", nullable = false)
-    private Component component;
+    private ComponentType componentType;
 
     @Column(name = "necessary_objects")
     private String necessaryObject;
@@ -75,12 +74,12 @@ public class Spell extends AbstractEntity {
         this.duration = duration;
     }
 
-    public Component getComponent() {
-        return component;
+    public ComponentType getComponent() {
+        return componentType;
     }
 
-    public void setComponent(Component component) {
-        this.component = component;
+    public void setComponent(ComponentType componentType) {
+        this.componentType = componentType;
     }
 
     public String getNecessaryObject() {

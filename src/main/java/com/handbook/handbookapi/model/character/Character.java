@@ -20,7 +20,7 @@ public class Character {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "classType", nullable = false)
+    @Column(name = "class_type", nullable = false)
     private ClassType classType;
 
     @Column(name = "level", nullable = false)
@@ -32,8 +32,9 @@ public class Character {
     private Background background;
 
     @ManyToOne
-    @JoinColumn(name = "race_id", referencedColumnName = "id")
-    private Race race;
+    // @JoinColumn(name = "race_id", referencedColumnName = "id")
+    @Column(name = "race_type", nullable = false)
+    private RaceType raceType;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -45,22 +46,22 @@ public class Character {
     @Column(name = "proficiency", nullable = false)
     private Integer proficiency;
 
-    @Column(name = "armorClass", nullable = false)
+    @Column(name = "armor_class", nullable = false)
     private Integer armorClass;
 
     @Column(name = "iniciative", nullable = false)
     private Integer iniciative;
 
-    @Column(name = "moveSpeed", nullable = false)
+    @Column(name = "move_speed", nullable = false)
     private Integer moveSpeed;
 
     @Column(name = "life", nullable = false)
     private Integer life;
 
-    @Column(name = "temporaryLife", nullable = false)
+    @Column(name = "temporary_life", nullable = false)
     private Integer temporaryLife;
 
-    @Column(name = "lifeDice", nullable = false)
+    @Column(name = "life_dice", nullable = false)
     private String lifeDice;
 
     @Column(name = "description", nullable = false)
@@ -77,7 +78,7 @@ public class Character {
             name = "character_language",
             joinColumns = @JoinColumn(name = "character_id"),
             inverseJoinColumns = @JoinColumn(name = "language_id"))
-    private List<Language> languages;
+    private List<LanguageType> languages;
 
     @JoinTable(
             name = "character_spell",

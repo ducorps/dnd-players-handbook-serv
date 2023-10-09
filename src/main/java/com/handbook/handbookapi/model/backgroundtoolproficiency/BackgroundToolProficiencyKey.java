@@ -5,7 +5,6 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class BackgroundToolProficiencyKey {
-
     @Column(name = "background_id")
     private Long backgroundId;
 

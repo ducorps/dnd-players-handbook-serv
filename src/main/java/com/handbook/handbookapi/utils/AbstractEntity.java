@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @MappedSuperclass
 public class AbstractEntity implements BaseEntity {
-
     public static final String SEQUENCE_GENERATOR = "seq";
 
     @Id
