@@ -6,7 +6,7 @@ import com.handbook.handbookapi.character.race.Race;
 import com.handbook.handbookapi.commom.AbstractEntity;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.spell.Spell;
-import com.handbook.handbookapi.user.Account;
+import com.handbook.handbookapi.account.Account;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

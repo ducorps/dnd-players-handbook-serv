@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.user;
+package com.handbook.handbookapi.account;
 
 import com.handbook.handbookapi.commom.AbstractEntity;
 import lombok.AllArgsConstructor;
