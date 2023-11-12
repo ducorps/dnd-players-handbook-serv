@@ -20,6 +20,7 @@ import java.util.List;
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_background")
 public class Background extends AbstractEntity {
     @Column(name = "background_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private BackgroundType backgroundType;
 
     @Column(name = "extra_languages")
