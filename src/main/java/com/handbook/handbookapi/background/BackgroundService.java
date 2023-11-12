@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.background;
 
-import com.handbook.handbookapi.commom.AbstractService;
+import com.handbook.handbookapi.common.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,8 +1,7 @@
 package com.handbook.handbookapi.spell;
 
-import com.handbook.handbookapi.commom.AbstractEntity;
+import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.spell.component.Component;
-import com.handbook.handbookapi.spell.component.ComponentType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

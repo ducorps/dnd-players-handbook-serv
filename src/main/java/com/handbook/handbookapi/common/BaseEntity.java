@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.commom;
+package com.handbook.handbookapi.common;
 
 public interface BaseEntity {
     Long getId();

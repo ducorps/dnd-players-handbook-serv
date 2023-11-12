@@ -3,7 +3,7 @@ package com.handbook.handbookapi.character;
 import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.character.race.Race;
-import com.handbook.handbookapi.commom.AbstractEntity;
+import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.spell.Spell;
 import com.handbook.handbookapi.account.Account;

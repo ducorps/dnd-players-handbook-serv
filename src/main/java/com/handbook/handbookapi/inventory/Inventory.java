@@ -1,7 +1,7 @@
 package com.handbook.handbookapi.inventory;
 
 import com.handbook.handbookapi.character.Character;
-import com.handbook.handbookapi.commom.AbstractEntity;
+import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.inventory.item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

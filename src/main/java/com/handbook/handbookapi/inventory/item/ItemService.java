@@ -1,7 +1,7 @@
 package com.handbook.handbookapi.inventory.item;
 
 import com.handbook.handbookapi.inventory.InventoryRepository;
-import com.handbook.handbookapi.commom.AbstractService;
+import com.handbook.handbookapi.common.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;

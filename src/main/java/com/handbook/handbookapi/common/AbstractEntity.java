@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.commom;
+package com.handbook.handbookapi.common;
 
 import javax.persistence.*;
 import java.util.Objects;

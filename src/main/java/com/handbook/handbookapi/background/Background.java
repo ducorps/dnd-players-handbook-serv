@@ -2,7 +2,7 @@ package com.handbook.handbookapi.background;
 
 import com.handbook.handbookapi.background.skillproficiency.SkillProficiency;
 import com.handbook.handbookapi.background.toolproficiency.ToolProficiency;
-import com.handbook.handbookapi.commom.AbstractEntity;
+import com.handbook.handbookapi.common.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

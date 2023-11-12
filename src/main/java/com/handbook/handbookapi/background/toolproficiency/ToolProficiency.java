@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.background.toolproficiency;
 
-import com.handbook.handbookapi.commom.AbstractEntity;
+import com.handbook.handbookapi.common.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

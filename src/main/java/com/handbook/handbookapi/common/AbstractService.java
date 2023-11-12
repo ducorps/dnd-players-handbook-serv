@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.commom;
+package com.handbook.handbookapi.common;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
