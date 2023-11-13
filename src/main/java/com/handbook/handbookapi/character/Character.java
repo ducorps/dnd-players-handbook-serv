@@ -88,6 +88,7 @@ public class Character extends AbstractEntity {
     private String description;
 
     @Column(name = "class_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private ClassType classType;
 
     @Column(name = "level", nullable = false)
