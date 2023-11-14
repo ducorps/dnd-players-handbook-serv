@@ -1,5 +1,6 @@
 package com.handbook.handbookapi.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,18 @@ import java.time.Duration;
 @Configuration
 @EnableCaching
 public class CacheConfig {
+    @Value("${handbookapi.app.redisHostNameUrl}")
+    private String redisHostNameUrl;
+
+    @Value("${handbookapi.app.redisPort}")
+    private Integer redisPort;
+
+    @Value("${handbookapi.app.redisPassword}")
+    private String redisPassword;
+
+    @Value("${handbookapi.app.redisUsername}")
+    private String redisUsername;
+
     @Bean
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -26,10 +39,10 @@ public class CacheConfig {
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
         RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration();
-        redisConfig.setHostName("oregon-redis.render.com");
-        redisConfig.setPort(6379);
-        redisConfig.setPassword("Lb7P4yZDIrqB24ZzMqdMtX9COgNA9l8O");
-        redisConfig.setUsername("red-cl8iffqvokcc73b03r6g");
+        redisConfig.setHostName(redisHostNameUrl);
+        redisConfig.setPort(redisPort);
+        redisConfig.setPassword(redisPassword);
+        redisConfig.setUsername(redisUsername);
         JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfig = JedisClientConfiguration.builder();
         jedisClientConfig.connectTimeout(Duration.ofSeconds(60));
         jedisClientConfig.useSsl();
