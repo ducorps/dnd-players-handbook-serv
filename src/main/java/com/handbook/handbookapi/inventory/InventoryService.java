@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InventoryService extends AbstractService<Inventory, Long> {
+
     @Autowired
     private InventoryRepository inventoryRepository;
-
     @Autowired
     private ItemService itemService;
-
     @Override
     protected JpaRepository<Inventory, Long> getRepository() {
         return inventoryRepository;
@@ -22,7 +21,7 @@ public class InventoryService extends AbstractService<Inventory, Long> {
 
     @Override
     public Inventory save(Inventory inventory) {
-        if(itemService.getSumOfAllInventoryEquipment(inventory.getId()) > inventory.getCapacity()) {
+        if(itemService.getSumOfAllInventoryItems(inventory.getId()) > inventory.getCapacity()) {
             throw new MaximumWeightException();
         }
 

@@ -1,6 +1,7 @@
 package com.handbook.handbookapi.character;
 
 public enum ClassType {
+
     BARBARIAN,
     BARD,
     CLERIC,

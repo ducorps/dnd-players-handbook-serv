@@ -9,6 +9,7 @@ import java.time.Duration;
 @EnableWebMvc
 @SpringBootApplication
 public class HandbookapiApplication {
+
 	public static void main(String[] args) {
 		SpringApplication.run(HandbookapiApplication.class, args);
 	}

@@ -8,18 +8,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ItemService extends AbstractService<Item, Long> {
+
     @Autowired
     private ItemRepository itemRepository;
-
     @Autowired
     private InventoryRepository inventoryRepository;
-
     @Override
     protected JpaRepository<Item, Long> getRepository() {
         return itemRepository;
     }
 
-    public Double getSumOfAllInventoryEquipment(Long inventoryId) {
+    public Double getSumOfAllInventoryItems(Long inventoryId) {
         return itemRepository
                 .findAll(QItem.item.inventories.any().id.eq(inventoryId))
                 .stream().mapToDouble(Item::getWeight)

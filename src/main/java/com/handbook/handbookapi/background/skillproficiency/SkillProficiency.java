@@ -9,14 +9,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "skill_proficiency")
+@Table(name = "skill_proficiencies")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_skill_proficiency")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_skill_proficiencies")
 public class SkillProficiency extends AbstractEntity {
-    @Column(name = "skill_proficiency")
+
+    @Column(name = "skill_proficiency_type")
     @Enumerated(EnumType.STRING)
-    private SkillProficiencyType type;
+    private SkillProficiencyType skillProficiencyType;
 }

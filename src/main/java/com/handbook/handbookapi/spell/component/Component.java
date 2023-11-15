@@ -9,14 +9,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "component")
+@Table(name = "components")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_component")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_components")
 public class Component extends AbstractEntity {
-    @Column(name = "component")
+
+    @Column(name = "component_type", nullable = false)
     @Enumerated(EnumType.STRING)
-    private ComponentType type;
+    private ComponentType componentType;
 }

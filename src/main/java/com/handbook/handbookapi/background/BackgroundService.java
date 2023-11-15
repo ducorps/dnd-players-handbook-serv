@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public class BackgroundService extends AbstractService<Background, Long> {
+
     @Autowired
     private BackgroundRepository backgroundRepository;
 

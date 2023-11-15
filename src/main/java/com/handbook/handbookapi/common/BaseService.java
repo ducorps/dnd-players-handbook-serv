@@ -1,6 +1,7 @@
 package com.handbook.handbookapi.common;
 
 public interface BaseService<T extends BaseEntity, ID> {
+
     /**
      * Get all entities, if not exist return empty collection
      *

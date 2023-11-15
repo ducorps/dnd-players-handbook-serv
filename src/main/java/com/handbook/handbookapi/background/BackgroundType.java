@@ -1,6 +1,7 @@
 package com.handbook.handbookapi.background;
 
 public enum BackgroundType {
+
     ACOLYTE,
     CHARLATAN,
     CRIMINAL,

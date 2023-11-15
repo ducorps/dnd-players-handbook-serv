@@ -12,20 +12,21 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "inventory")
+@Table(name = "inventories")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_inventory")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_inventories")
 public class Inventory extends AbstractEntity {
+
     @OneToOne
     @JoinColumn(name = "character_id", referencedColumnName = "id")
     private Character character;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "inventory_item",
+            name = "inventory_items",
             joinColumns = @JoinColumn(name = "inventory_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items;

@@ -9,14 +9,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "language")
+@Table(name = "languages")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_language")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_languages")
 public class Language extends AbstractEntity {
-    @Column(name = "language")
+
+    @Column(name = "language_type")
     @Enumerated(EnumType.STRING)
-    private LanguageType language;
+    private LanguageType languageType;
 }

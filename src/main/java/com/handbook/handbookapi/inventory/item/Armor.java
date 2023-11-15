@@ -10,25 +10,22 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "armor")
+@Table(name = "armors")
 @PrimaryKeyJoinColumn(name="item_id")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_armor")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_armors")
 public class Armor extends Item {
+
     @Column(name = "strength", nullable = false)
     private Integer strength;
-
     @Column(name = "stealth", nullable = false)
     private Boolean stealth;
-
     @Column(name = "armor_class", nullable = false)
     private Integer armorClass;
-
     @Column(name = "armor_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private ArmorType armorType;
-
 }

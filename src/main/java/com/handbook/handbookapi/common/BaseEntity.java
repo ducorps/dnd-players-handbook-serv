@@ -1,7 +1,7 @@
 package com.handbook.handbookapi.common;
 
 public interface BaseEntity {
-    Long getId();
 
+    Long getId();
     void setId(Long id);
 }

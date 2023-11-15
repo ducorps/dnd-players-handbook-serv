@@ -9,17 +9,16 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "value")
+@Table(name = "values")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_price")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_values")
 public class Value extends AbstractEntity {
 
     @Column(name = "amount", nullable = false)
     private Integer amount;
-
     @Column(name = "currency_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private CurrencyType currencyType;

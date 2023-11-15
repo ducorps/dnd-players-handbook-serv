@@ -11,12 +11,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/characters")
 public class CharacterController {
+
     @Autowired
     private CharacterService service;
 
     @GetMapping("{id}")
-    public ResponseEntity findAllByAccountId(@PathVariable("id") Long id) {
-        List<Character> character = service.findAllByAccountId(id);
+    public ResponseEntity findAllByUserId(@PathVariable("id") Long id) {
+        List<Character> character = service.findAllByUserId(id);
         return ResponseEntity.ok(character);
     }
 }

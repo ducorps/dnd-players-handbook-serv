@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/inventories")
 public class InventoryController {
+
     @Autowired
     private InventoryService inventoryService;
 

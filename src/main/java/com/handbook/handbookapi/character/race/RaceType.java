@@ -1,6 +1,7 @@
 package com.handbook.handbookapi.character.race;
 
 public enum RaceType {
+
     DRAGONBORN,
     DWARF,
     ELF,

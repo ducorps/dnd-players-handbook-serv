@@ -16,15 +16,13 @@ import java.time.Duration;
 @Configuration
 @EnableCaching
 public class CacheConfig {
+
     @Value("${handbookapi.app.redisHostNameUrl}")
     private String redisHostNameUrl;
-
     @Value("${handbookapi.app.redisPort}")
     private Integer redisPort;
-
     @Value("${handbookapi.app.redisPassword}")
     private String redisPassword;
-
     @Value("${handbookapi.app.redisUsername}")
     private String redisUsername;
 

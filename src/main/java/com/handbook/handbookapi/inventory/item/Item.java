@@ -17,18 +17,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_item")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_items")
 public class Item extends AbstractEntity {
+
     @Column(name = "name", nullable = false)
     private String name;
-
     @Column(name = "weight", nullable = false)
     private Double weight;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "value_id")
     private Value value;
-
     @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
     List<Inventory> inventories;
 }

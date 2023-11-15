@@ -1,6 +1,7 @@
 package com.handbook.handbookapi.background.skillproficiency;
 
 public enum SkillProficiencyType {
+
     ACROBATICS(AbilityType.DEXTERITY),
     ANIMAL_HANDLING(AbilityType.WISDOM),
     ARCANA(AbilityType.INTELLIGENCE),
@@ -22,7 +23,5 @@ public enum SkillProficiencyType {
 
     private AbilityType abilityType;
 
-    SkillProficiencyType(AbilityType abilityType) {
-
-    }
+    SkillProficiencyType(AbilityType abilityType) {}
 }

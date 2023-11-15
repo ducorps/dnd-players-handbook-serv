@@ -1,6 +1,7 @@
 package com.handbook.handbookapi.value;
 
 public enum CurrencyType {
+
     COPPER(1),
     SILVER(10),
     ELECTRUM(50),
