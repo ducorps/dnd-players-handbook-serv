@@ -15,9 +15,9 @@ public class CharacterController {
     @Autowired
     private CharacterService service;
 
-    @GetMapping("{id}")
-    public ResponseEntity findAllByUserId(@PathVariable("id") Long id) {
-        List<Character> character = service.findAllByUserId(id);
-        return ResponseEntity.ok(character);
-    }
+//    @GetMapping("{id}")
+//    public ResponseEntity findAllByUserId(@PathVariable("id") Long id) {
+//        List<Character> character = service.findAllByUserId(id);
+//        return ResponseEntity.ok(character);
+//    }
 }

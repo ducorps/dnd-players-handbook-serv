@@ -6,7 +6,7 @@ import com.handbook.handbookapi.character.race.Race;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.spell.Spell;
-import com.handbook.handbookapi.user.User;
+//import com.handbook.handbookapi.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,9 +29,9 @@ public class Character extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "background_id")
     private Background background;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "character_skills",
