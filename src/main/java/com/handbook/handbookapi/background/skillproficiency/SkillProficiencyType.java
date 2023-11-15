@@ -1,5 +1,7 @@
 package com.handbook.handbookapi.background.skillproficiency;
 
+import com.handbook.handbookapi.common.AbilityType;
+
 public enum SkillProficiencyType {
 
     ACROBATICS(AbilityType.DEXTERITY),

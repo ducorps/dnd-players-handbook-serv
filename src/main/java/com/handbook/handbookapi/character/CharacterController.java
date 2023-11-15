@@ -2,11 +2,9 @@ package com.handbook.handbookapi.character;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 @RestController
 @RequestMapping("/characters")
@@ -20,4 +18,11 @@ public class CharacterController {
 //        List<Character> character = service.findAllByUserId(id);
 //        return ResponseEntity.ok(character);
 //    }
+
+    @PostMapping
+    public ResponseEntity<Character> create(@RequestBody Character character) {
+        Character saved = service.save(character);
+        return ResponseEntity.created(URI.create("/characters" + saved.getId())).body(saved);
+    }
+
 }

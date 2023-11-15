@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.background.skillproficiency;
+package com.handbook.handbookapi.common;
 
 public enum AbilityType {
 
@@ -7,5 +7,6 @@ public enum AbilityType {
     CONSTITUTION,
     INTELLIGENCE,
     WISDOM,
-    CHARISMA
+    CHARISMA,
+    ALL
 }
