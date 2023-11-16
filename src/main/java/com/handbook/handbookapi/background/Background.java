@@ -23,14 +23,17 @@ public class Background extends AbstractEntity {
     @Column(name = "background_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private BackgroundType backgroundType;
+
     @Column(name = "extra_languages")
     private Integer extraLanguages;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "background_skill_proficiencies",
             joinColumns = @JoinColumn(name = "background_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_proficiency_id"))
     private List<SkillProficiency> skillProficiencies;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "background_tool_proficiencies",

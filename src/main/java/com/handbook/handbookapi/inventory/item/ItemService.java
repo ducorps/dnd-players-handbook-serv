@@ -11,8 +11,10 @@ public class ItemService extends AbstractService<Item, Long> {
 
     @Autowired
     private ItemRepository itemRepository;
+
     @Autowired
     private InventoryRepository inventoryRepository;
+
     @Override
     protected JpaRepository<Item, Long> getRepository() {
         return itemRepository;

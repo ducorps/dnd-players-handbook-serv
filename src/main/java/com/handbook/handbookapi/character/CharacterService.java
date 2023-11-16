@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 public class CharacterService extends AbstractService<Character, Long> {
 
     @Autowired
-    private CharacterRepository repository;
+    private CharacterRepository characterRepository;
 
     @Override
-    protected JpaRepository<Character, Long> getRepository() { return repository; }
+    protected JpaRepository<Character, Long> getRepository() { return characterRepository; }
 
-    /*public List<Character> findAllByUserId(Long id) {
-        return repository.findAll(QCharacter.character.user.id.eq(id));
-    }*/
+    public List<Character> findAllByUserId(Long id) {
+        return characterRepository.findAll(QCharacter.character.user.id.eq(id));
+    }
 
     @Override
     public Character save(Character character) {

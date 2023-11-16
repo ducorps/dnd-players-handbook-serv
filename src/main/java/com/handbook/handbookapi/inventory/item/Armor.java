@@ -21,10 +21,13 @@ public class Armor extends Item {
 
     @Column(name = "strength", nullable = false)
     private Integer strength;
+
     @Column(name = "stealth", nullable = false)
     private Boolean stealth;
+
     @Column(name = "armor_class", nullable = false)
     private Integer armorClass;
+
     @Column(name = "armor_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private ArmorType armorType;
