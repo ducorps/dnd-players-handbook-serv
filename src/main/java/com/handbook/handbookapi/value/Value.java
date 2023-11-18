@@ -19,6 +19,7 @@ public class Value extends AbstractEntity {
 
     @Column(name = "amount", nullable = false)
     private Integer amount;
+
     @Column(name = "currency_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private CurrencyType currencyType;

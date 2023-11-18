@@ -6,7 +6,7 @@ import com.handbook.handbookapi.character.race.Race;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.spell.Spell;
-//import com.handbook.handbookapi.user.User;
+import com.handbook.handbookapi.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,30 +27,36 @@ public class Character extends AbstractEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
+
     @ManyToOne
     @JoinColumn(name = "background_id")
     private Background background;
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "character_skills",
             joinColumns = @JoinColumn(name = "character_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
     private List<Skill> skills;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "character_languages",
             joinColumns = @JoinColumn(name = "character_id"),
             inverseJoinColumns = @JoinColumn(name = "language_id"))
     private List<Language> languages;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "character_spells",
             joinColumns = @JoinColumn(name = "character_id"),
             inverseJoinColumns = @JoinColumn(name = "spell_id"))
     private List<Spell> spells;
+
     @OneToOne
     @JoinColumn(name = "race_id", nullable = false)
     private Race race;
@@ -116,7 +122,8 @@ public class Character extends AbstractEntity {
         this.charisma = value;
     }
 
-    public void sumAttributes(Integer intelligence, Integer strength, Integer constitution, Integer wisdom, Integer dexterity, Integer charisma) {
+    public void sumAttributes(Integer intelligence, Integer strength, Integer constitution,
+                              Integer wisdom, Integer dexterity, Integer charisma) {
         this.intelligence += intelligence;
         this.strength += strength;
         this.constitution += constitution;

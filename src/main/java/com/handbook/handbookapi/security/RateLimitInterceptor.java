@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class RateLimitInterceptor extends HandlerInterceptorAdapter {
 
     private static final int MAX_REQUEST_PER_HOUR = 100;
+
     private final RedisTemplate<String, String> redisTemplate;
 
     @Autowired

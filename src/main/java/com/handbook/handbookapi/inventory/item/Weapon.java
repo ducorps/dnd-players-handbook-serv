@@ -20,6 +20,7 @@ public class Weapon extends Item {
 
     @Column(name = "damage", nullable = false)
     private Double damage;
+
     @Column(name = "properties")
     private String properties;
 }

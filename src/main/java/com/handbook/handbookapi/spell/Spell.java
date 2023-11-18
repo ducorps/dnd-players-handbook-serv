@@ -21,16 +21,22 @@ public class Spell extends AbstractEntity {
 
     @Column(name="name", nullable = false)
     private String name;
+
     @Column(name = "casting_time", nullable = false)
     private Integer castingTime;
+
     @Column(name = "description", nullable = false)
     private String description;
+
     @Column(name = "range", nullable = false)
     private Double range;
+
     @Column(name = "duration", nullable = false)
     private Integer duration;
+
     @Column(name = "necessary_objects")
     private String necessaryObject;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "spell_components",

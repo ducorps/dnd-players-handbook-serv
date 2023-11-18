@@ -11,18 +11,17 @@ import java.util.List;
 public class CharacterController {
 
     @Autowired
-    private CharacterService service;
+    private CharacterService characterService;
 
-//    @GetMapping("{id}")
-//    public ResponseEntity findAllByUserId(@PathVariable("id") Long id) {
-//        List<Character> character = service.findAllByUserId(id);
-//        return ResponseEntity.ok(character);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity findAllByUserId(@PathVariable("id") Long id) {
+        List<Character> character = characterService.findAllByUserId(id);
+        return ResponseEntity.ok(character);
+    }
 
     @PostMapping
     public ResponseEntity<Character> create(@RequestBody Character character) {
-        Character saved = service.save(character);
-        return ResponseEntity.created(URI.create("/characters" + saved.getId())).body(saved);
+        Character saved = characterService.save(character);
+        return ResponseEntity.created(URI.create("/characters/" + saved.getId())).body(saved);
     }
-
 }
