@@ -1,9 +1,6 @@
 package com.handbook.handbookapi.user.role;
 
-import com.handbook.handbookapi.common.AbstractEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,12 +9,20 @@ import javax.persistence.*;
 @Table(name = "roles")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_roles")
-public class Role extends AbstractEntity {
+public class Role {
 
-    @Column(name = "role_type", length = 20)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    @Column(length = 20)
+    private ERole name;
+
+    public Role() {
+    }
+
+    public Role(ERole name) {
+        this.name = name;
+    }
 }

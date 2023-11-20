@@ -3,6 +3,7 @@ package com.handbook.handbookapi.user;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.user.role.Role;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import java.util.Set;
             @UniqueConstraint(columnNames = "email")})
 @Getter
 @Setter
+@NoArgsConstructor
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_users")
 public class User extends AbstractEntity {
 

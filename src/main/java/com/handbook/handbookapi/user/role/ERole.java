@@ -1,6 +1,6 @@
 package com.handbook.handbookapi.user.role;
 
-public enum RoleType {
+public enum ERole {
 
     ROLE_USER,
     ROLE_MODERATOR,
