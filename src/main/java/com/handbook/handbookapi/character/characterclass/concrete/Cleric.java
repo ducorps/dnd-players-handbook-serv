@@ -28,5 +28,4 @@ public class Cleric extends CharacterClass implements ILevelUpBehavior, ILongRes
     public Die getHitDie() {
         return new Die(8);
     }
-
 }
