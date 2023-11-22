@@ -4,8 +4,14 @@ import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.characterclass.behaviors.ILevelUpBehavior;
 import com.handbook.handbookapi.character.characterclass.behaviors.ILongRestBehavior;
 import com.handbook.handbookapi.character.characterclass.behaviors.IShortRestBehavior;
+import com.handbook.handbookapi.common.Die;
 
 public class Barbarian extends CharacterClass implements ILevelUpBehavior, ILongRestBehavior, IShortRestBehavior {
+
+    public Barbarian() {
+        super();
+    }
+
     @Override
     public void levelUp() {
 
@@ -20,4 +26,11 @@ public class Barbarian extends CharacterClass implements ILevelUpBehavior, ILong
     public void shortRest() {
 
     }
+
+    @Override
+    public Die getHitDie() {
+        return new Die(12);
+    }
+
+
 }

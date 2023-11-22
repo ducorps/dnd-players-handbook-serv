@@ -84,9 +84,6 @@ public class Character extends AbstractEntity {
     @Column(name = "temporary_life", nullable = false)
     private Integer temporaryLife;
 
-    @Column(name = "hit_dice", nullable = false)
-    private String hitDice;
-
     @Column(name = "description", nullable = false)
     private String description;
 
