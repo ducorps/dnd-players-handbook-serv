@@ -28,6 +28,10 @@ public class CharacterService extends AbstractService<Character, Long> {
         return characterRepository.findAll(QCharacter.character.user.id.eq(id));
     }
 
+    public List<Character> findAll() {
+        return characterRepository.findAll();
+    }
+
     @Override
     public Character save(Character character) {
         if (Objects.nonNull(character.getRace())) {

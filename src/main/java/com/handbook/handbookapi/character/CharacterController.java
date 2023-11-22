@@ -13,6 +13,12 @@ public class CharacterController {
     @Autowired
     private CharacterService characterService;
 
+    @GetMapping
+    public ResponseEntity findAll() {
+        List<Character> characters = characterService.findAll();
+        return ResponseEntity.ok(characters);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity findAllByUserId(@PathVariable("id") Long id) {
         List<Character> character = characterService.findAllByUserId(id);
