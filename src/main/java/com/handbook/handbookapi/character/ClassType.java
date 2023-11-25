@@ -10,6 +10,7 @@ public enum ClassType {
     MONK,
     PALADIN,
     RANGER,
+    ROGUE,
     SORCERER,
     WARLOCK,
     WIZARD

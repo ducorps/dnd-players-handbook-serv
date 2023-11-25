@@ -1,6 +1,8 @@
 package com.handbook.handbookapi.character;
 
 import com.handbook.handbookapi.background.Background;
+import com.handbook.handbookapi.character.characterclass.CharacterClass;
+import com.handbook.handbookapi.character.characterclass.ICharacterClass;
 import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.character.race.Race;
 import com.handbook.handbookapi.common.AbstractEntity;
@@ -82,15 +84,12 @@ public class Character extends AbstractEntity {
     @Column(name = "temporary_life", nullable = false)
     private Integer temporaryLife;
 
-    @Column(name = "hit_dice", nullable = false)
-    private String hitDice;
-
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "class_type", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ClassType classType;
+    @OneToOne
+    @JoinColumn(name = "class_id", nullable = false)
+    private CharacterClass classType;
 
     @Column(name = "level", nullable = false)
     private Integer level;

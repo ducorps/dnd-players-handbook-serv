@@ -1,9 +1,12 @@
 package com.handbook.handbookapi.character;
 
+import com.handbook.handbookapi.character.characterclass.CharacterClass;
+import com.handbook.handbookapi.character.characterclass.CharacterClassFactory;
 import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.common.AbilityType;
 import com.handbook.handbookapi.common.AbstractService;
 import com.handbook.handbookapi.exceptions.GameRuleException;
+import com.handbook.handbookapi.utils.ModifierUtils;
 import com.mysema.commons.lang.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,29 +28,34 @@ public class CharacterService extends AbstractService<Character, Long> {
         return characterRepository.findAll(QCharacter.character.user.id.eq(id));
     }
 
+    public List<Character> findAll() {
+        return characterRepository.findAll();
+    }
+
     @Override
     public Character save(Character character) {
         if (Objects.nonNull(character.getRace())) {
-             addRaceAttributes(character);
+            addRaceAttributes(character);
         }
+        validateAttributes(character);
 
         character.setProficiency(2);
 
-        //TODO Criar behaviour da classe para compreender a vida base do personagem
-        // Por momento setaremos um valor fixo para indicar o lugar onde deve ficar na rotina
+        CharacterClass characterClass = CharacterClassFactory.getCharacterClass(character.getClassType());
 
-        character.setLife(15);
-        character.setHitDice("1d8");
+        Integer baseHealth = calculateBaseHealth(character, characterClass);
 
-        validateAttributes(character);
+        character.setLife(baseHealth);
 
         return super.save(character);
     }
 
+    private static int calculateBaseHealth(Character character, CharacterClass characterClass) {
+        return characterClass.getHitDie().roll() + ModifierUtils.getModifier(character.getConstitution());
+    }
+
     private static void validateAttributes(Character character) {
-        boolean hasInvalidAttribute = character.getAllAttributes().stream().anyMatch(attribute -> {
-            return attribute > 20 || attribute < 0;
-        });
+        boolean hasInvalidAttribute = character.getAllAttributes().stream().anyMatch(attribute -> attribute > 20 || attribute < 0);
 
         if (hasInvalidAttribute) {
             throw new GameRuleException("Atributos não podem exceder o valor de 20 ou serem inferiores a 0");

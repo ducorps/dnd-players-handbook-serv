@@ -24,6 +24,4 @@ public enum RaceType {
         this.mainAttributeModifier = mainAttributeModifier;
         this.secondaryAttributeType = secondaryAttributeType;
     }
-
-
 }

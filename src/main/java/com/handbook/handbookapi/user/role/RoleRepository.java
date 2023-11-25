@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long>, CustomQuerydslPredicateExecutor<Role> {
+public interface RoleRepository extends JpaRepository<Role, Long>{
 
-    Optional<Role> findByRoleType(RoleType roleType);
+    Optional<Role> findByName(ERole name);
 }
