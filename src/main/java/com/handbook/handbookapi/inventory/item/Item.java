@@ -25,12 +25,19 @@ public class Item extends AbstractEntity {
     private String name;
 
     @Column(name = "weight", nullable = false)
-    private Double weight;
+    private Integer weight;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "value_id")
     private Value value;
 
-    @ManyToMany(mappedBy = "items", fetch = FetchType.LAZY)
-    List<Inventory> inventories;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inventory_id")
+    private Inventory inventory;
+
+    public Item(String name, Integer weight, Value value) {
+        this.name = name;
+        this.weight = weight;
+        this.value = value;
+    }
 }
