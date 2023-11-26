@@ -6,11 +6,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public class BackgroundService extends AbstractService<Background, Long> {
 
-    @Autowired
     private BackgroundRepository backgroundRepository;
 
     @Override
     protected JpaRepository<Background, Long> getRepository() {
         return backgroundRepository;
     }
+
+    public Background findById(Long id) {
+        return backgroundRepository.findById(id).orElse(null);
+    }
+
+    public Background findByBackgroundType(BackgroundType backgroundType) {
+        return backgroundRepository.findFirstByBackgroundType(backgroundType);
+    }
+
 }
