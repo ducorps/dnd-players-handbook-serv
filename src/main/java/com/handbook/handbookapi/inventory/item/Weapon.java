@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class Weapon extends Item {
 
     @Column(name = "damage", nullable = false)
-    private Double damage;
+    private String damage;
 
     @Column(name = "properties")
     private String properties;

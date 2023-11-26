@@ -38,12 +38,9 @@ public class Character extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "character_skills",
-            joinColumns = @JoinColumn(name = "character_id"),
-            inverseJoinColumns = @JoinColumn(name = "skill_id"))
-    private List<Skill> skills;
+    @OneToOne
+    @JoinColumn(name = "skill_id")
+    private Skill skill;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

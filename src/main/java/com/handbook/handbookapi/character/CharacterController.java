@@ -1,5 +1,6 @@
 package com.handbook.handbookapi.character;
 
+import com.handbook.handbookapi.background.BackgroundType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +26,16 @@ public class CharacterController {
         return ResponseEntity.ok(character);
     }
 
-    @PostMapping
-    public ResponseEntity<Character> create(@RequestBody Character character) {
+    @PostMapping("{idCharacter}/race")
+    public ResponseEntity<Character> saveRace(@RequestBody Character character) {
         Character saved = characterService.save(character);
         return ResponseEntity.created(URI.create("/characters/" + saved.getId())).body(saved);
+    }
+
+    @PostMapping("/{idCharacter}/background")
+    public ResponseEntity saveBackgroundByType(@PathVariable("idCharacter") Long idCharacter, @RequestBody BackgroundType backgroundType) {
+        Character character = characterService.updateBackground(idCharacter, backgroundType);
+
+        return ResponseEntity.ok(character);
     }
 }

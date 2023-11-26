@@ -1,16 +1,23 @@
 package com.handbook.handbookapi.character;
 
+import com.handbook.handbookapi.background.Background;
+import com.handbook.handbookapi.background.BackgroundService;
+import com.handbook.handbookapi.background.BackgroundType;
 import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.characterclass.CharacterClassFactory;
 import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.common.AbilityType;
 import com.handbook.handbookapi.common.AbstractService;
 import com.handbook.handbookapi.exceptions.GameRuleException;
+import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.utils.ModifierUtils;
 import com.mysema.commons.lang.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,6 +27,8 @@ public class CharacterService extends AbstractService<Character, Long> {
 
     @Autowired
     private CharacterRepository characterRepository;
+
+    private BackgroundService backgroundService;
 
     @Override
     protected JpaRepository<Character, Long> getRepository() { return characterRepository; }
@@ -37,10 +46,14 @@ public class CharacterService extends AbstractService<Character, Long> {
         if (Objects.nonNull(character.getRace())) {
             addRaceAttributes(character);
         }
+
         validateAttributes(character);
 
         character.setProficiency(2);
 
+        return super.save(character);
+    }
+    public Character saveStep2(Character character) {
         CharacterClass characterClass = CharacterClassFactory.getCharacterClass(character.getClassType());
 
         Integer baseHealth = calculateBaseHealth(character, characterClass);
@@ -87,5 +100,33 @@ public class CharacterService extends AbstractService<Character, Long> {
             case CHARISMA -> character.sumCharisma(attributeModifier.getFirst());
             case ALL -> character.sumAllAttributes(attributeModifier.getFirst());
         }
+    }
+
+    public Character updateBackground(Long idCharacter, BackgroundType backgroundType) {
+        Character character = getById(idCharacter);
+
+        Background newBackground = backgroundService.findByBackgroundType(backgroundType);
+        character.setBackground(newBackground);
+
+        return save(character);
+    }
+
+    public Character addSkills(Long idCharacter, List<String> listSkills) {
+        Character character = getById(idCharacter);
+        Skill skill = character.getSkill();
+
+        listSkills.forEach(skillName -> {
+            try {
+                Field field = skill.getClass().getDeclaredField(skillName);
+                field.setAccessible(true);
+
+                Integer fieldValue = field.getInt(skill);
+                field.setInt(skill, fieldValue + character.getProficiency());
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new GameRuleException("Não foi possível adicionar a skill " + skillName);
+            }
+        });
+
+        return save(character);
     }
 }
