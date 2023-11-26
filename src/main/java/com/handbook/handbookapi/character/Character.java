@@ -109,6 +109,9 @@ public class Character extends AbstractEntity {
     @Column(name = "charisma")
     private Integer charisma;
 
+    @Column(name = "is_completed")
+    private Boolean isCompleted = Boolean.FALSE;
+
     public void setAllAttributes(Integer value) {
         this.intelligence = value;
         this.strength = value;

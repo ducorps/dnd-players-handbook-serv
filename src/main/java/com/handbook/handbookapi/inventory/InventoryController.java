@@ -2,9 +2,7 @@ package com.handbook.handbookapi.inventory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/inventories")
@@ -18,5 +16,12 @@ public class InventoryController {
         Inventory savedInventory = inventoryService.save(inventory);
 
         return ResponseEntity.ok(savedInventory);
+    }
+
+    @PostMapping("/{idInventory}/add-item")
+    public ResponseEntity<Inventory> addItem(@PathVariable("idInventory") Long idInventory,@RequestBody String itemName) {
+        Inventory inventory = inventoryService.addItem(idInventory, itemName);
+
+        return ResponseEntity.ok(inventory);
     }
 }

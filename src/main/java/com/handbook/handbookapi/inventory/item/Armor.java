@@ -2,6 +2,8 @@ package com.handbook.handbookapi.inventory.item;
 
 
 import com.handbook.handbookapi.common.AbstractEntity;
+import com.handbook.handbookapi.inventory.Inventory;
+import com.handbook.handbookapi.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,4 +33,12 @@ public class Armor extends Item {
     @Column(name = "armor_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private ArmorType armorType;
+
+    public Armor(String name, Integer weight, Value value, Integer strength, Boolean stealth, Integer armorClass, ArmorType armorType) {
+        super(name, weight, value);
+        this.strength = strength;
+        this.stealth = stealth;
+        this.armorClass = armorClass;
+        this.armorType = armorType;
+    }
 }
