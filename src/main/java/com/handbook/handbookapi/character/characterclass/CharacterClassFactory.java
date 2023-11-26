@@ -18,7 +18,7 @@ public class CharacterClassFactory {
             case SORCERER -> new Sorcerer();
             case WARLOCK -> new Warlock();
             case WIZARD -> new Wizard();
-            default -> throw new GameRuleException("Não é permitido criar um personagem sem selecionar uma classe");
+            default -> throw new GameRuleException("Characters need to have a game class.");
         };
     }
 }

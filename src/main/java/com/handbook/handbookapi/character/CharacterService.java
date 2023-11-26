@@ -1,5 +1,6 @@
 package com.handbook.handbookapi.character;
 
+import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.background.BackgroundService;
 import com.handbook.handbookapi.background.BackgroundType;
@@ -10,10 +11,14 @@ import com.handbook.handbookapi.common.AbilityType;
 import com.handbook.handbookapi.common.AbstractService;
 import com.handbook.handbookapi.exceptions.GameRuleException;
 import com.handbook.handbookapi.skill.Skill;
+import com.handbook.handbookapi.user.User;
+import com.handbook.handbookapi.user.UserDetailsImpl;
 import com.handbook.handbookapi.utils.ModifierUtils;
 import com.mysema.commons.lang.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -39,6 +44,21 @@ public class CharacterService extends AbstractService<Character, Long> {
 
     public List<Character> findAll() {
         return characterRepository.findAll();
+    }
+
+    public Character createCharacter() {
+        Character character = new Character();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        User user = new User();
+
+        user.setId(userDetails.getId());
+
+        character.setUser(user);
+
+        return save(character);
     }
 
     @Override
@@ -71,7 +91,7 @@ public class CharacterService extends AbstractService<Character, Long> {
         boolean hasInvalidAttribute = character.getAllAttributes().stream().anyMatch(attribute -> attribute > 20 || attribute < 0);
 
         if (hasInvalidAttribute) {
-            throw new GameRuleException("Atributos não podem exceder o valor de 20 ou serem inferiores a 0");
+            throw new GameRuleException("Skills cannot be higher than 20 nor be lower than 0");
         }
     }
 
@@ -127,6 +147,15 @@ public class CharacterService extends AbstractService<Character, Long> {
             }
         });
 
+        return save(character);
+    }
+
+    public Character addLanguages(Long idCharacter, List<Language> languages) {
+        Character character = characterRepository.findById(idCharacter).orElse(null);
+
+        if(Objects.nonNull(languages)) {
+            character.setLanguages(languages);
+        }
         return save(character);
     }
 }
