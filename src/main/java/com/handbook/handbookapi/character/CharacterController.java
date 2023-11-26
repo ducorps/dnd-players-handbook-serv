@@ -1,5 +1,6 @@
 package com.handbook.handbookapi.character;
 
+import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.background.BackgroundType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,13 @@ public class CharacterController {
         return ResponseEntity.ok(character);
     }
 
+    @PostMapping("/new-character")
+    public ResponseEntity<Character> create() {
+        Character saved = characterService.createCharacter();
+
+        return ResponseEntity.ok(saved);
+    }
+
     @PostMapping("{idCharacter}/race")
     public ResponseEntity<Character> saveRace(@RequestBody Character character) {
         Character saved = characterService.save(character);
@@ -37,5 +45,12 @@ public class CharacterController {
         Character character = characterService.updateBackground(idCharacter, backgroundType);
 
         return ResponseEntity.ok(character);
+    }
+
+    @PostMapping("/{idCharacter}/language")
+    public ResponseEntity<Character> addLanguages(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<Language> languages){
+       Character saved = characterService.addLanguages(idCharacter, languages);
+
+       return ResponseEntity.ok(saved);
     }
 }

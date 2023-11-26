@@ -27,20 +27,20 @@ public class CharacterClass extends AbstractEntity implements ICharacterClass  {
 
     @Override
     public void performLevelUp() {
-        throw new GameRuleException("Não existe comportamento de level up para essa classe.");
+        throw new GameRuleException("There is no level up behavior for this game class.");
     }
 
     @Override
     public void performLongRest() {
-        throw new GameRuleException("Não existe comportamento de long rest para essa classe.");
+        throw new GameRuleException("There is no long rest behavior for this game class.");
     }
 
     @Override
     public void performShortRest() {
-        throw new GameRuleException("Não existe comportamento de short rest para essa classe.");
+        throw new GameRuleException("There is no short rest behavior for this game class.");
     }
 
     public Die getHitDie() {
-        throw new GameRuleException("Não existe dado de vida para essa classe.");
+        throw new GameRuleException("There is no hit die behavior for this game class..");
     }
 }
