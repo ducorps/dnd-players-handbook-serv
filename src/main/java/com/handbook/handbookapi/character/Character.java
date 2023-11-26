@@ -27,7 +27,7 @@ import java.util.List;
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_characters")
 public class Character extends AbstractEntity {
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @ManyToOne
@@ -57,56 +57,56 @@ public class Character extends AbstractEntity {
     private List<Spell> spells;
 
     @OneToOne
-    @JoinColumn(name = "race_id", nullable = false)
+    @JoinColumn(name = "race_id")
     private Race race;
 
-    @Column(name = "experience", nullable = false)
+    @Column(name = "experience")
     private Integer experience;
 
-    @Column(name = "proficiency", nullable = false)
+    @Column(name = "proficiency")
     private Integer proficiency;
 
-    @Column(name = "armor_class", nullable = false)
+    @Column(name = "armor_class")
     private Integer armorClass;
 
-    @Column(name = "initiative", nullable = false)
+    @Column(name = "initiative")
     private Integer initiative;
 
-    @Column(name = "move_speed", nullable = false)
+    @Column(name = "move_speed")
     private Integer moveSpeed;
 
-    @Column(name = "life", nullable = false)
+    @Column(name = "life")
     private Integer life;
 
-    @Column(name = "temporary_life", nullable = false)
+    @Column(name = "temporary_life")
     private Integer temporaryLife;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
     @OneToOne
-    @JoinColumn(name = "class_id", nullable = false)
+    @JoinColumn(name = "class_id")
     private CharacterClass classType;
 
-    @Column(name = "level", nullable = false)
+    @Column(name = "level")
     private Integer level;
 
-    @Column(name = "intelligence", nullable = false)
+    @Column(name = "intelligence")
     private Integer intelligence;
 
-    @Column(name = "strength", nullable = false)
+    @Column(name = "strength")
     private Integer strength;
 
-    @Column(name = "constitution", nullable = false)
+    @Column(name = "constitution")
     private Integer constitution;
 
-    @Column(name = "wisdom", nullable = false)
+    @Column(name = "wisdom")
     private Integer wisdom;
 
-    @Column(name = "dexterity", nullable = false)
+    @Column(name = "dexterity")
     private Integer dexterity;
 
-    @Column(name = "charisma", nullable = false)
+    @Column(name = "charisma")
     private Integer charisma;
 
     public void setAllAttributes(Integer value) {

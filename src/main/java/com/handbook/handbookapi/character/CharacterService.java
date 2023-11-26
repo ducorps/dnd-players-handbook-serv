@@ -10,6 +10,7 @@ import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.common.AbilityType;
 import com.handbook.handbookapi.common.AbstractService;
 import com.handbook.handbookapi.exceptions.GameRuleException;
+import com.handbook.handbookapi.inventory.InventoryService;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.user.User;
 import com.handbook.handbookapi.user.UserDetailsImpl;
@@ -35,6 +36,9 @@ public class CharacterService extends AbstractService<Character, Long> {
 
     private BackgroundService backgroundService;
 
+    @Autowired
+    private InventoryService inventoryService;
+
     @Override
     protected JpaRepository<Character, Long> getRepository() { return characterRepository; }
 
@@ -58,11 +62,15 @@ public class CharacterService extends AbstractService<Character, Long> {
 
         character.setUser(user);
 
-        return save(character);
+        Character characterSaved = save(character);
+
+        inventoryService.createNewInventory(characterSaved);
+
+        return characterSaved;
     }
 
-    @Override
-    public Character save(Character character) {
+
+    public Character step1(Character character) {
         if (Objects.nonNull(character.getRace())) {
             addRaceAttributes(character);
         }
