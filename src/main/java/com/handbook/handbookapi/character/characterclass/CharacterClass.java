@@ -1,5 +1,6 @@
 package com.handbook.handbookapi.character.characterclass;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.handbook.handbookapi.character.ClassType;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.common.Die;
@@ -40,7 +41,8 @@ public class CharacterClass extends AbstractEntity implements ICharacterClass  {
         throw new GameRuleException("There is no short rest behavior for this game class.");
     }
 
+    @JsonIgnore
     public Die getHitDie() {
-        throw new GameRuleException("There is no hit die behavior for this game class..");
+        throw new GameRuleException("There is no hit die behavior for this game class.");
     }
 }
