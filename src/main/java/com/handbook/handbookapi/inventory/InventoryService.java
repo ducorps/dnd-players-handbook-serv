@@ -75,7 +75,7 @@ public class InventoryService extends AbstractService<Inventory, Long> {
                 item.setInventory(inventory);
 
                 itemService.save(item);
-                inventoryRepository.save(inventory);
+                inventory = inventoryRepository.save(inventory);
             } else {
                 throw new GameRuleException("Inventory not found");
             }
@@ -88,30 +88,5 @@ public class InventoryService extends AbstractService<Inventory, Long> {
 
     private Inventory findById(Long idInventory) {
         return inventoryRepository.findById(idInventory).orElse(null);
-    }
-
-    public Inventory addItem(Long idInventory, String itemName) {
-        RestTemplate restTemplate = new RestTemplate();
-        LinkedHashMap<?, ?> json = restTemplate.getForObject(API_DND5E_EQUIPMENT_URL + itemName, LinkedHashMap.class);
-
-        if(Objects.nonNull(json)) {
-            ItemDTO itemDTO =  ItemDTO.fromApi(json);
-
-            Inventory inventory = findById(idInventory);
-
-            if (Objects.nonNull(inventory)) {
-                Item item = itemDTO.toEntity();
-                item.setInventory(inventory);
-
-                itemService.save(item);
-                inventoryRepository.save(inventory);
-            } else {
-                throw new GameRuleException("Inventory not found");
-            }
-
-            return inventory;
-        } else {
-            throw new GameRuleException("Item not found");
-        }
     }
 }

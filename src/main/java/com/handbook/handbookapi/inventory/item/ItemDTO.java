@@ -1,9 +1,12 @@
 package com.handbook.handbookapi.inventory.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.handbook.handbookapi.value.CurrencyType;
 import com.handbook.handbookapi.value.Value;
+import com.handbook.handbookapi.value.ValueService;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import springfox.documentation.spring.web.json.Json;
 
@@ -30,7 +33,7 @@ public class ItemDTO {
 
     public Item toEntity() {
         return switch (type) {
-            case "WEAPON" -> new Weapon(this.getDamage(), this.getProperties());
+            case "WEAPON" -> new Weapon(this.getName(), this.getWeight(), this.getValue(), this.getDamage(), this.getProperties());
             case "ARMOR" -> new Armor(this.getName(), this.getWeight(), this.getValue(), this.getStrength(),
                     this.getStealth(), this.getArmorClass(), this.getArmorType());
             default -> new Item(this.getName(), this.getWeight(), this.getValue());
@@ -63,8 +66,15 @@ public class ItemDTO {
 
     public static ItemDTO fromApi(LinkedHashMap<?, ?> json) {
         ItemDTO itemDTO = new ItemDTO();
+        Value itemValue = new Value();
+
         itemDTO.setName((String) json.get("name"));
         itemDTO.setWeight((Integer) json.get("weight"));
+
+        LinkedHashMap<?, ?> value = (LinkedHashMap<?, ?>) json.get("cost");
+        itemValue.setAmount((Integer) value.get("quantity"));
+        itemValue.setCurrencyType(CurrencyType.fromAbbreviation((String) value.get("unit")));
+        itemDTO.setValue(itemValue);
 
         if(json.get("strength") != null) {
             itemDTO.setStrength((Integer) json.get("strength"));

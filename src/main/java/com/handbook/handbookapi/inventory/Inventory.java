@@ -24,11 +24,8 @@ public class Inventory extends AbstractEntity {
     @JoinColumn(name = "character_id", referencedColumnName = "id")
     private Character character;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "inventory_items",
-            joinColumns = @JoinColumn(name = "inventory_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inventory_id")
     private List<Item> items;
 
     private Double capacity;

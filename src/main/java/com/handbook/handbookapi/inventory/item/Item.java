@@ -1,5 +1,6 @@
 package com.handbook.handbookapi.inventory.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.handbook.handbookapi.inventory.Inventory;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.value.Value;
@@ -27,10 +28,11 @@ public class Item extends AbstractEntity {
     @Column(name = "weight", nullable = false)
     private Integer weight;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "value_id")
     private Value value;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id")
     private Inventory inventory;
