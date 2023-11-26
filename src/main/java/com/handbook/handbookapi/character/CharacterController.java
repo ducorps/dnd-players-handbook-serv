@@ -21,9 +21,9 @@ public class CharacterController {
         return ResponseEntity.ok(characters);
     }
 
-    @GetMapping("/user/{idUser}")
-    public ResponseEntity findAllByUserId(@PathVariable("idUser") Long idUser) {
-        List<Character> character = characterService.findAllByUserId(idUser);
+    @GetMapping("/user")
+    public ResponseEntity findAllByUserId() {
+        List<Character> character = characterService.findAllByUserId();
         return ResponseEntity.ok(character);
     }
 
