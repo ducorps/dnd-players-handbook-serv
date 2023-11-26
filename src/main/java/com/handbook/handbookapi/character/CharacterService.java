@@ -42,8 +42,8 @@ public class CharacterService extends AbstractService<Character, Long> {
     @Override
     protected JpaRepository<Character, Long> getRepository() { return characterRepository; }
 
-    public List<Character> findAllByUserId(Long id) {
-        return characterRepository.findAll(QCharacter.character.user.id.eq(id));
+    public List<Character> findAllByUserId(Long idUser) {
+        return characterRepository.findAll(QCharacter.character.user.id.eq(idUser));
     }
 
     public List<Character> findAll() {

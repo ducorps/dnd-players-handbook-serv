@@ -25,7 +25,7 @@ public class Inventory extends AbstractEntity {
     private Character character;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inventory_id")
+    @JoinColumn(name = "inventory_id", nullable = true)
     private List<Item> items;
 
     private Double capacity;
