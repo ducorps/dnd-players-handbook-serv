@@ -21,16 +21,16 @@ import javax.persistence.*;
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_armors")
 public class Armor extends Item {
 
-    @Column(name = "strength", nullable = false)
+    @Column(name = "strength")
     private Integer strength;
 
-    @Column(name = "stealth", nullable = false)
+    @Column(name = "stealth")
     private Boolean stealth;
 
-    @Column(name = "armor_class", nullable = false)
+    @Column(name = "armor_class")
     private Integer armorClass;
 
-    @Column(name = "armor_type", nullable = false)
+    @Column(name = "armor_type")
     @Enumerated(EnumType.STRING)
     private ArmorType armorType;
 
