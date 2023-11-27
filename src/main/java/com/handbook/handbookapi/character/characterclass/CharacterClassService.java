@@ -1,7 +1,5 @@
 package com.handbook.handbookapi.character.characterclass;
 
-import com.handbook.handbookapi.character.Character;
-import com.handbook.handbookapi.character.ClassType;
 import com.handbook.handbookapi.common.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;

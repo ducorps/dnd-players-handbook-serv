@@ -26,7 +26,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_characters")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_characters", allocationSize = 1)
 public class Character extends AbstractEntity {
 
     @Column(name = "name")
@@ -48,7 +48,7 @@ public class Character extends AbstractEntity {
     private Skill skill;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "character_languages",
             joinColumns = @JoinColumn(name = "character_id"),
@@ -56,7 +56,7 @@ public class Character extends AbstractEntity {
     private List<Language> languages;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "character_spells",
             joinColumns = @JoinColumn(name = "character_id"),

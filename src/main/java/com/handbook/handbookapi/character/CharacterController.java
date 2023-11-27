@@ -4,7 +4,6 @@ import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.character.race.Race;
-import com.handbook.handbookapi.skill.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,31 +66,30 @@ public class CharacterController {
     }
 
     @PostMapping("/{idCharacter}/language")
-    public ResponseEntity<Character> addLanguages(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<Language> languages){
-       Character saved = characterService.addLanguages(idCharacter, languages);
+    public ResponseEntity<Character> updateLanguages(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<Language> languages){
+       Character saved = characterService.updateLanguages(idCharacter, languages);
 
        return ResponseEntity.ok(saved);
     }
 
     @PostMapping("/{idCharacter}/skill")
-    public ResponseEntity<Character> addSkill(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<String> skills){
-        Character saved = characterService.addSkills(idCharacter, skills);
+    public ResponseEntity<Character> updateSkills(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<String> skills){
+        Character saved = characterService.updateSkills(idCharacter, skills);
 
         return ResponseEntity.ok(saved);
     }
 
-    @PostMapping("/{idCharacter}/name")
-    public ResponseEntity addName(@PathVariable("idCharacter") Long idCharacter, @RequestBody String name) {
-        Character saved = characterService.addName(idCharacter, name);
+    @PostMapping("/{idCharacter}/final-step")
+    public ResponseEntity updateFinalStep(@PathVariable("idCharacter") Long idCharacter,  @RequestBody FinalStepDTO finalStepDTO) {
+        Character saved = characterService.updateFinalStep(idCharacter, finalStepDTO);
 
         return ResponseEntity.ok(saved);
     }
 
-    @PostMapping("/{idCharacter}/attribute")
-    public ResponseEntity updateAttributes(@PathVariable("idCharacter") Long idCharacter, @RequestBody AttributesDTO attributes) {
-        Character saved = characterService.updateAttributes(idCharacter, attributes);
+    @DeleteMapping("{idCharacter}")
+    public ResponseEntity delete(@PathVariable("idCharacter") Long idCharacter) {
+        characterService.deleteCharacter(idCharacter);
 
-        return ResponseEntity.ok(saved);
+        return ResponseEntity.ok().build();
     }
-
 }

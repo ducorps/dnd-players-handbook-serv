@@ -1,6 +1,5 @@
 package com.handbook.handbookapi.character.characterclass;
 
-import com.handbook.handbookapi.character.ClassType;
 import lombok.Getter;
 import lombok.Setter;
 
