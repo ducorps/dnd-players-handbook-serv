@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -17,6 +18,10 @@ public class BackgroundDTO {
     private List<ToolProficiencyDTO> toolProficiencies;
 
     public static BackgroundDTO fromEntity(Background background) {
+        if (Objects.isNull(background)) {
+            return null;
+        }
+
         BackgroundDTO dto = new BackgroundDTO();
 
         dto.setBackgroundType(background.getBackgroundType());

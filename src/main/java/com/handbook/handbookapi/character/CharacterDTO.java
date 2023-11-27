@@ -1,25 +1,21 @@
 package com.handbook.handbookapi.character;
 
-import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.background.BackgroundDTO;
-import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.characterclass.CharacterClassDTO;
-import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.character.language.LanguageDTO;
-import com.handbook.handbookapi.character.race.Race;
 import com.handbook.handbookapi.character.race.RaceDTO;
 import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.skill.SkillDTO;
-import com.handbook.handbookapi.spell.Spell;
 import com.handbook.handbookapi.spell.SpellDTO;
-import com.handbook.handbookapi.spell.component.ComponentDTO;
-import com.handbook.handbookapi.user.User;
 import com.handbook.handbookapi.user.UserDTO;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -83,12 +79,12 @@ public class CharacterDTO {
         Character character = new Character();
 
         character.setName(character.getName());
-        character.setBackground(this.toEntity().getBackground());
-        character.setUser(this.toEntity().getUser());
-        character.setSkill(this.toEntity().getSkill());
-        character.setLanguages(this.toEntity().getLanguages());
-        character.setSpells(this.toEntity().getSpells());
-        character.setRace(this.toEntity().getRace());
+        character.setBackground(this.getBackground().toEntity());
+        character.setUser(this.getUser().toEntity());
+        character.setSkill(this.getSkill().toEntity());
+        character.setLanguages(this.getLanguages().stream().map(LanguageDTO::toEntity).collect(Collectors.toList()));
+        character.setSpells(this.getSpells().stream().map(SpellDTO::toEntity).collect(Collectors.toList()));
+        character.setRace(this.getRace().toEntity());
         character.setExperience(character.getExperience());
         character.setProficiency(character.getProficiency());
         character.setArmorClass(character.getArmorClass());
@@ -97,7 +93,7 @@ public class CharacterDTO {
         character.setLife(character.getLife());
         character.setTemporaryLife(character.getTemporaryLife());
         character.setDescription(character.getDescription());
-        character.setCharacterClass(this.toEntity().getCharacterClass());
+        character.setCharacterClass(this.getCharacterClass().toEntity());
         character.setLevel(character.getLevel());
         character.setIntelligence(character.getIntelligence());
         character.setStrength(character.getStrength());
@@ -107,5 +103,11 @@ public class CharacterDTO {
         character.setCharisma(character.getCharisma());
 
         return character;
+    }
+
+    public static Page<CharacterDTO> fromEntity(Page<Character> characters) {
+        List<CharacterDTO> charactersFind = characters.stream().map(character -> fromEntity(character)).collect(Collectors.toList());
+        Page<CharacterDTO> charactersDTO = new PageImpl<>(charactersFind, characters.getPageable(), characters.getTotalElements());
+        return charactersDTO;
     }
 }

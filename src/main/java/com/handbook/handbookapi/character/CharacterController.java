@@ -10,6 +10,8 @@ import com.handbook.handbookapi.character.race.RaceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.net.URI;
 import java.util.List;
@@ -26,10 +28,12 @@ public class CharacterController {
         return ResponseEntity.ok(characters);
     }
 
-    @GetMapping("/user/{idUser}")
-    public ResponseEntity findAllByUserId(@PathVariable("idUser") Long idUser) {
-        List<Character> character = characterService.findAllByUserId(idUser);
-        return ResponseEntity.ok(character);
+    @GetMapping("/user")
+    public ResponseEntity findAllByUserId(@RequestParam(defaultValue = "0") int page,
+                                          @RequestParam(defaultValue = "10") int size) {
+        Page<Character> characters = characterService.findAllByUserId(PageRequest.of(page, size));
+        Page<CharacterDTO> characterDTOS = CharacterDTO.fromEntity(characters);
+        return ResponseEntity.ok(characterDTOS);
     }
 
     @GetMapping("/{idCharacter}")

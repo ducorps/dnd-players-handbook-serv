@@ -43,6 +43,6 @@ public class CharacterClass extends AbstractEntity implements ICharacterClass  {
 
     @JsonIgnore
     public Die getHitDie() {
-        throw new GameRuleException("There is no hit die behavior for this game class..");
+        throw new GameRuleException("There is no hit die behavior for this game class.");
     }
 }

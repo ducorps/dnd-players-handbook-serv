@@ -3,6 +3,8 @@ package com.handbook.handbookapi.skill;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class SkillDTO {
@@ -26,6 +28,9 @@ public class SkillDTO {
     private Integer deception;
 
     public static SkillDTO fromEntity(Skill skill) {
+        if (Objects.isNull(skill)) {
+            return null;
+        }
         SkillDTO dto = new SkillDTO();
         dto.setAcrobatics(skill.getAcrobatics());
         dto.setAnimalHandling(skill.getAnimalHandling());
