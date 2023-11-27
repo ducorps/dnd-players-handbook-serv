@@ -25,7 +25,7 @@ public interface CustomQuerydslPredicateExecutor<T> extends QuerydslPredicateExe
 //        return this.findAll(booleanBuilder, pageable);
 //    }
 
-    default Page<T> findAllTeste(Predicate predicate, Pageable pageable) {
+    default Page<T> findAllWithPredicate(Predicate predicate, Pageable pageable) {
         return this.findAll(predicate, pageable);
     }
 }

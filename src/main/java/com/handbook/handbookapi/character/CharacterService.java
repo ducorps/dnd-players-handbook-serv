@@ -25,10 +25,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class CharacterService extends AbstractService<Character, Long> {
@@ -48,7 +46,7 @@ public class CharacterService extends AbstractService<Character, Long> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        return characterRepository.findAllTeste(QCharacter.character.user.id.eq(userDetails.getId()), pageable);
+        return characterRepository.findAllWithPredicate(QCharacter.character.user.id.eq(userDetails.getId()), pageable);
     }
 
     public List<Character> findAll() {
