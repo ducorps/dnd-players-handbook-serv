@@ -1,11 +1,14 @@
 package com.handbook.handbookapi.character;
 
+import com.handbook.handbookapi.character.characterclass.CharacterClassService;
 import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.background.BackgroundService;
 import com.handbook.handbookapi.background.BackgroundType;
 import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.characterclass.CharacterClassFactory;
+import com.handbook.handbookapi.character.race.Race;
+import com.handbook.handbookapi.character.race.RaceService;
 import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.common.AbilityType;
 import com.handbook.handbookapi.common.AbstractService;
@@ -23,10 +26,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class CharacterService extends AbstractService<Character, Long> {
@@ -38,6 +39,12 @@ public class CharacterService extends AbstractService<Character, Long> {
 
     @Autowired
     private InventoryService inventoryService;
+
+    @Autowired
+    private CharacterClassService characterClassService;
+
+    @Autowired
+    private RaceService raceService;
 
     @Override
     protected JpaRepository<Character, Long> getRepository() { return characterRepository; }
@@ -61,6 +68,7 @@ public class CharacterService extends AbstractService<Character, Long> {
         user.setId(userDetails.getId());
 
         character.setUser(user);
+        character.setAllAttributes(0);
 
         Character characterSaved = save(character);
 
@@ -70,10 +78,15 @@ public class CharacterService extends AbstractService<Character, Long> {
     }
 
 
-    public Character step1(Character character) {
-        if (Objects.nonNull(character.getRace())) {
-            addRaceAttributes(character);
+    public Character updateCharacterRace(Long idCharacter, Race race) {
+        Character character = getById(idCharacter);
+        Race raceSaved = raceService.findByRaceType(race.getRaceType());
+
+        if (Objects.isNull(raceSaved)) {
+            throw new GameRuleException("Race not found");
         }
+        character.setRace(raceSaved);
+        addRaceAttributes(character);
 
         validateAttributes(character);
 
@@ -81,14 +94,23 @@ public class CharacterService extends AbstractService<Character, Long> {
 
         return super.save(character);
     }
-    public Character saveStep2(Character character) {
-        CharacterClass characterClass = CharacterClassFactory.getCharacterClass(character.getClassType());
 
-        Integer baseHealth = calculateBaseHealth(character, characterClass);
+    public Character updateCharacterClass(Long idCharacter, CharacterClass characterClass) {
+        Character character = getById(idCharacter);
+        CharacterClass characterClassSaved = characterClassService.findByClassType(characterClass.getClassType());
+        CharacterClass characterClassBuilt = CharacterClassFactory.getCharacterClass(characterClassSaved);
 
+        characterClassBuilt.setId(characterClassSaved.getId());
+        characterClassBuilt.setClassType(characterClassSaved.getClassType());
+
+        character.setCharacterClass(characterClassBuilt);
+
+        Integer baseHealth = calculateBaseHealth(character, characterClassBuilt);
+
+        character.setHitDie(characterClassBuilt.getHitDie().toString());
         character.setLife(baseHealth);
 
-        return super.save(character);
+        return save(character);
     }
 
     private static int calculateBaseHealth(Character character, CharacterClass characterClass) {
@@ -104,16 +126,16 @@ public class CharacterService extends AbstractService<Character, Long> {
     }
 
     private void addRaceAttributes(Character character) {
-        RaceType race = character.getRace().getRaceType();
+        Race race = character.getRace();
 
-        Pair<Integer, AbilityType> pairMainAttribute = race.getMainAttributeModifier();
-        Pair<Integer, AbilityType> pairSecondaryAttribute = race.getSecondaryAttributeType();
+        Pair<Integer, AbilityType> pairMainAttribute = race.getRaceType().getMainAttributeModifier();
+        Pair<Integer, AbilityType> pairSecondaryAttribute = race.getRaceType().getSecondaryAttributeType();
 
-        if(Objects.nonNull(pairMainAttribute)) {
+        if(Objects.nonNull(pairMainAttribute.getFirst())) {
             addPairAtributes(pairMainAttribute, character);
         }
 
-        if(Objects.nonNull(pairSecondaryAttribute)) {
+        if(Objects.nonNull(pairSecondaryAttribute.getFirst())) {
             addPairAtributes(pairSecondaryAttribute, character);
         }
     }
@@ -130,10 +152,10 @@ public class CharacterService extends AbstractService<Character, Long> {
         }
     }
 
-    public Character updateBackground(Long idCharacter, BackgroundType backgroundType) {
+    public Character updateBackground(Long idCharacter, Background background) {
         Character character = getById(idCharacter);
 
-        Background newBackground = backgroundService.findByBackgroundType(backgroundType);
+        Background newBackground = backgroundService.findByBackgroundType(background.getBackgroundType());
         character.setBackground(newBackground);
 
         return save(character);

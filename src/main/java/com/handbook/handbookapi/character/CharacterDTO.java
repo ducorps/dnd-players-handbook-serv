@@ -8,6 +8,7 @@ import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.character.language.LanguageDTO;
 import com.handbook.handbookapi.character.race.Race;
 import com.handbook.handbookapi.character.race.RaceDTO;
+import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.skill.SkillDTO;
 import com.handbook.handbookapi.spell.Spell;
@@ -66,7 +67,7 @@ public class CharacterDTO {
         dto.setLife(character.getLife());
         dto.setTemporaryLife(character.getTemporaryLife());
         dto.setDescription(character.getDescription());
-        dto.setClassType(CharacterClassDTO.fromEntity(character.getClassType()));
+        dto.setClassType(CharacterClassDTO.fromEntity(character.getCharacterClass()));
         dto.setLevel(character.getLevel());
         dto.setIntelligence(character.getIntelligence());
         dto.setStrength(character.getStrength());
@@ -96,7 +97,7 @@ public class CharacterDTO {
         character.setLife(character.getLife());
         character.setTemporaryLife(character.getTemporaryLife());
         character.setDescription(character.getDescription());
-        character.setClassType(this.toEntity().getClassType());
+        character.setCharacterClass(this.toEntity().getCharacterClass());
         character.setLevel(character.getLevel());
         character.setIntelligence(character.getIntelligence());
         character.setStrength(character.getStrength());
