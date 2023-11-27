@@ -44,6 +44,8 @@ public class ItemDTO {
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setName(item.getName());
         itemDTO.setWeight(item.getWeight());
+        itemDTO.setType("ITEM");
+        itemDTO.setValue(item.getValue());
 
         if(item instanceof Weapon) {
             Weapon weapon = (Weapon) item;
@@ -75,6 +77,7 @@ public class ItemDTO {
         itemValue.setAmount((Integer) value.get("quantity"));
         itemValue.setCurrencyType(CurrencyType.fromAbbreviation((String) value.get("unit")));
         itemDTO.setValue(itemValue);
+        itemDTO.setType("ITEM");
 
         if(json.get("strength") != null) {
             itemDTO.setStrength((Integer) json.get("strength"));
