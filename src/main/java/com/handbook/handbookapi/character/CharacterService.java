@@ -204,4 +204,28 @@ public class CharacterService extends AbstractService<Character, Long> {
 
         return save(character);
     }
+
+    public Character addName(Long idCharacter, String name) {
+        Character character = characterRepository.findById(idCharacter).orElse(null);
+
+        if(Objects.nonNull(name)) {
+            character.setName(name);
+        }
+        return save(character);
+    }
+
+    public Character updateAttributes(Long idCharacter, AttributesDTO attributes) {
+        Character character = characterRepository.findById(idCharacter).orElse(null);
+
+        if(Objects.nonNull(attributes)) {
+            character.sumAttributes(attributes.getIntelligence(),
+                    attributes.getStrength(),
+                    attributes.getConstitution(),
+                    attributes.getWisdom(),
+                    attributes.getDexterity(),
+                    attributes.getCharisma());
+        }
+
+        return save(character);
+    }
 }
