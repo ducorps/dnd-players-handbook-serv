@@ -2,7 +2,6 @@ package com.handbook.handbookapi.inventory.item;
 
 
 import com.handbook.handbookapi.common.AbstractEntity;
-import com.handbook.handbookapi.inventory.Inventory;
 import com.handbook.handbookapi.value.Value;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

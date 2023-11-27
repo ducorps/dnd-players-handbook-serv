@@ -1,8 +1,8 @@
 package com.handbook.handbookapi.inventory;
 
+import com.handbook.handbookapi.character.CharacterDTO;
 import com.handbook.handbookapi.exceptions.GameRuleException;
 import com.handbook.handbookapi.character.Character;
-import com.handbook.handbookapi.exceptions.GameRuleException;
 import com.handbook.handbookapi.exceptions.MaximumWeightException;
 import com.handbook.handbookapi.inventory.item.Item;
 import com.handbook.handbookapi.inventory.item.ItemDTO;
@@ -12,17 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import springfox.documentation.spring.web.json.Json;
+
+import java.util.*;
+
 
 import java.util.LinkedHashMap;
 import java.util.Objects;
-import org.springframework.web.client.RestTemplate;
-import springfox.documentation.spring.web.json.Json;
 
-import java.util.LinkedHashMap;
-import java.util.Objects;
-
-import java.util.Objects;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import com.handbook.handbookapi.user.UserDetailsImpl;
 
 @Service
 public class InventoryService extends AbstractService<Inventory, Long> {
@@ -43,13 +42,21 @@ public class InventoryService extends AbstractService<Inventory, Long> {
 
     @Override
     public Inventory save(Inventory inventory) {
-        if(Objects.nonNull(inventory.getId())) {
+        if (Objects.nonNull(inventory.getId())) {
             if (itemService.getSumOfAllInventoryItems(inventory.getId()) > inventory.getCapacity()) {
                 throw new MaximumWeightException();
             }
         }
 
         return super.save(inventory);
+    }
+
+    public List<Inventory> findAll() {
+        return inventoryRepository.findAll();
+    }
+
+    public List<Inventory> findAllByCharacterId(Long idCharacter) {
+        return inventoryRepository.findAll(QInventory.inventory.character.id.eq(idCharacter));
     }
 
     public Inventory createNewInventory(Character characterSaved) {
@@ -62,27 +69,31 @@ public class InventoryService extends AbstractService<Inventory, Long> {
     }
 
     public Inventory addItem(Long idInventory, String itemName) {
-        RestTemplate restTemplate = new RestTemplate();
-        LinkedHashMap<?, ?> json = restTemplate.getForObject(API_DND5E_EQUIPMENT_URL + itemName, LinkedHashMap.class);
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            LinkedHashMap<?, ?> json = restTemplate.getForObject(API_DND5E_EQUIPMENT_URL + itemName, LinkedHashMap.class);
 
-        if(Objects.nonNull(json)) {
-            ItemDTO itemDTO =  ItemDTO.fromApi(json);
+            if (Objects.nonNull(json)) {
+                ItemDTO itemDTO = ItemDTO.fromApi(json);
 
-            Inventory inventory = findById(idInventory);
+                Inventory inventory = findById(idInventory);
 
-            if (Objects.nonNull(inventory)) {
-                Item item = itemDTO.toEntity();
-                item.setInventory(inventory);
+                if (Objects.nonNull(inventory)) {
+                    Item item = itemDTO.toEntity();
+                    item.setInventory(inventory);
 
-                itemService.save(item);
-                inventory = inventoryRepository.save(inventory);
+                    itemService.save(item);
+                    inventory = inventoryRepository.save(inventory);
+                } else {
+                    throw new GameRuleException("Inventory not found");
+                }
+
+                return inventory;
             } else {
-                throw new GameRuleException("Inventory not found");
+                throw new GameRuleException("Item not found");
             }
-
-            return inventory;
-        } else {
-            throw new GameRuleException("Item not found");
+        } catch (Exception e) {
+            throw new GameRuleException(e.getMessage());
         }
     }
 
