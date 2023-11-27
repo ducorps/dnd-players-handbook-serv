@@ -51,6 +51,9 @@ public class SpellDTO {
     }
 
     public static List<SpellDTO> fromEntity(List<Spell> spell) {
+        if(Objects.isNull(spell)) {
+            return null;
+        }
         return spell.stream().map(SpellDTO::fromEntity).collect(Collectors.toList());
     }
 

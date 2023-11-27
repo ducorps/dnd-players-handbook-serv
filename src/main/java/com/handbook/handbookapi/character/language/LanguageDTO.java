@@ -30,6 +30,9 @@ public class LanguageDTO {
     }
 
     public static List<LanguageDTO> fromEntity(List<Language> languages) {
+        if(Objects.isNull(languages)) {
+            return null;
+        }
         return languages.stream().map(LanguageDTO::fromEntity).collect(Collectors.toList());
     }
 }
