@@ -1,7 +1,6 @@
 package com.handbook.handbookapi.character.characterclass;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.handbook.handbookapi.character.ClassType;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.common.Die;
 import com.handbook.handbookapi.exceptions.GameRuleException;

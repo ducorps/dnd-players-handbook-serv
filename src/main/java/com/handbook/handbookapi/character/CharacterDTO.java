@@ -45,6 +45,7 @@ public class CharacterDTO {
     private Integer wisdom;
     private Integer dexterity;
     private Integer charisma;
+    private Boolean isCompleted;
 
     public static CharacterDTO fromEntity(Character character) {
         CharacterDTO dto = new CharacterDTO();
@@ -73,6 +74,7 @@ public class CharacterDTO {
         dto.setWisdom(character.getWisdom());
         dto.setDexterity(character.getDexterity());
         dto.setCharisma(character.getCharisma());
+        dto.setIsCompleted(character.getIsCompleted());
 
         return dto;
     }
@@ -103,6 +105,7 @@ public class CharacterDTO {
         character.setWisdom(character.getWisdom());
         character.setDexterity(character.getDexterity());
         character.setCharisma(character.getCharisma());
+        character.setIsCompleted(character.getIsCompleted());
 
         return character;
     }

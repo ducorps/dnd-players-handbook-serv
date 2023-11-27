@@ -55,8 +55,8 @@ public class InventoryService extends AbstractService<Inventory, Long> {
         return inventoryRepository.findAll();
     }
 
-    public List<Inventory> findAllByCharacterId(Long idCharacter) {
-        return inventoryRepository.findAll(QInventory.inventory.character.id.eq(idCharacter));
+    public Inventory findByCharacterId(Long idCharacter) {
+        return inventoryRepository.findByCharacterId(idCharacter);
     }
 
     public Inventory createNewInventory(Character characterSaved) {
@@ -99,5 +99,23 @@ public class InventoryService extends AbstractService<Inventory, Long> {
 
     private Inventory findById(Long idInventory) {
         return inventoryRepository.findById(idInventory).orElse(null);
+    }
+
+    public Inventory removeAllItems(Long idInventory) {
+        try {
+            Inventory inventory = findById(idInventory);
+
+            if(Objects.nonNull(inventory)) {
+                List<Item> items = inventory.getItems();
+
+                if(Objects.nonNull(items)) {
+                    items.forEach(item -> itemService.delete(item));
+                }
+            }
+
+            return inventory;
+        } catch (Exception e) {
+            throw new GameRuleException("Error deleting items from inventory: " + e.getMessage());
+        }
     }
 }

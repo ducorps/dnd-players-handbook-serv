@@ -1,4 +1,4 @@
-package com.handbook.handbookapi.character;
+package com.handbook.handbookapi.character.characterclass;
 
 public enum ClassType {
 

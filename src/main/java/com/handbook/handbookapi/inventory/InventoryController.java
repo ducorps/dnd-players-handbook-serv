@@ -27,8 +27,8 @@ public class InventoryController {
 
     @GetMapping("/character/{idCharacter}")
     public ResponseEntity findAllByCharacterId(@PathVariable("idCharacter") Long idCharacter) {
-        List<Inventory> inventory = inventoryService.findAllByCharacterId(idCharacter);
-        List<InventoryDTO> inventoryDTO = InventoryDTO.fromEntity(inventory);
+        Inventory inventory = inventoryService.findByCharacterId(idCharacter);
+        InventoryDTO inventoryDTO = InventoryDTO.fromEntity(inventory);
 
         return ResponseEntity.ok(inventoryDTO);
     }

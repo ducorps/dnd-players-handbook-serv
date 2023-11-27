@@ -4,15 +4,15 @@ import com.handbook.handbookapi.character.characterclass.CharacterClassService;
 import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.background.BackgroundService;
-import com.handbook.handbookapi.background.BackgroundType;
 import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.characterclass.CharacterClassFactory;
+import com.handbook.handbookapi.character.language.LanguageService;
 import com.handbook.handbookapi.character.race.Race;
 import com.handbook.handbookapi.character.race.RaceService;
-import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.common.AbilityType;
 import com.handbook.handbookapi.common.AbstractService;
 import com.handbook.handbookapi.exceptions.GameRuleException;
+import com.handbook.handbookapi.inventory.Inventory;
 import com.handbook.handbookapi.inventory.InventoryService;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.user.User;
@@ -28,6 +28,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,6 +46,9 @@ public class CharacterService extends AbstractService<Character, Long> {
 
     @Autowired
     private CharacterClassService characterClassService;
+
+    @Autowired
+    private LanguageService languageService;
 
     @Autowired
     private RaceService raceService;
@@ -94,7 +98,6 @@ public class CharacterService extends AbstractService<Character, Long> {
             throw new GameRuleException("Race not found");
         }
         character.setRace(raceSaved);
-        //addRaceAttributes(character);
 
         validateAttributes(character);
 
@@ -105,18 +108,14 @@ public class CharacterService extends AbstractService<Character, Long> {
 
     public Character updateCharacterClass(Long idCharacter, CharacterClass characterClass) {
         Character character = getById(idCharacter);
+
         CharacterClass characterClassSaved = characterClassService.findByClassType(characterClass.getClassType());
-        CharacterClass characterClassBuilt = CharacterClassFactory.getCharacterClass(characterClassSaved);
 
-        characterClassBuilt.setId(characterClassSaved.getId());
-        characterClassBuilt.setClassType(characterClassSaved.getClassType());
+        if (Objects.isNull(characterClassSaved)) {
+            throw new GameRuleException("Class " + characterClass.getClassType().toString().toLowerCase() + " not found");
+        }
 
-        character.setCharacterClass(characterClassBuilt);
-
-        Integer baseHealth = calculateBaseHealth(character, characterClassBuilt);
-
-        character.setHitDie(characterClassBuilt.getHitDie().toString());
-        character.setLife(baseHealth);
+        character.setCharacterClass(characterClassSaved);
 
         return save(character);
     }
@@ -169,7 +168,7 @@ public class CharacterService extends AbstractService<Character, Long> {
         return save(character);
     }
 
-    public Character addSkills(Long idCharacter, List<String> listSkills) {
+    public Character updateSkills(Long idCharacter, List<String> listSkills) {
         Character character = getById(idCharacter);
         Skill skill = character.getSkill();
 
@@ -188,48 +187,90 @@ public class CharacterService extends AbstractService<Character, Long> {
         return save(character);
     }
 
-    public Character addLanguages(Long idCharacter, List<Language> languages) {
-        Character character = characterRepository.findById(idCharacter).orElse(null);
+    public Character updateLanguages(Long idCharacter, List<Language> languages) {
+        try {
+            Character character = characterRepository.findById(idCharacter).orElse(null);
 
-        if(Objects.nonNull(languages)) {
-            character.setLanguages(languages);
+            if (Objects.isNull(character)) {
+                throw new GameRuleException("Character not found");
+            }
+
+            List<Language> languagesSaved = new ArrayList<>();
+
+            if(Objects.nonNull(languages)) {
+                languages.stream().forEach(language -> {
+                    Language languageSaved = languageService.findByLanguageType(language.getLanguageType());
+
+                    if(Objects.nonNull(languageSaved) && !languagesSaved.contains(languageSaved)) {
+                        languagesSaved.add(languageSaved);
+                    } else {
+                        throw new GameRuleException("Language " + language.getLanguageType().toString().toLowerCase() + " not found");
+                    }
+                });
+
+                character.setLanguages(languagesSaved);
+                return save(character);
+            }
+        } catch (Exception e) {
+            throw new GameRuleException("Error updating languages: " + e.getMessage());
         }
-        return save(character);
+
+        return null;
     }
 
-    public Character updateCharacterProficiency(Long idCharacter, Skill skill) {
-        Character character = getById(idCharacter);
-
-        character.setSkill(skill);
-
-        return save(character);
-    }
-
-    public Character addName(Long idCharacter, String name) {
+    public Character updateFinalStep(Long idCharacter, FinalStepDTO finalStepDTO) {
         Character character = characterRepository.findById(idCharacter).orElse(null);
 
-        if(Objects.nonNull(name)) {
-            character.setName(name);
+        if (Objects.isNull(character)) {
+            throw new GameRuleException("Character not found");
         }
+
+        if(Objects.nonNull(finalStepDTO.getName())) {
+            character.setName(finalStepDTO.getName());
+        }
+
+         updateAttributes(character, finalStepDTO);
+        character.setIsCompleted(Boolean.TRUE);
+
+        CharacterClass characterClass = CharacterClassFactory.getCharacterClass(character.getCharacterClass());
+        Integer baseHealth = calculateBaseHealth(character, characterClass);
+
+        character.setHitDie(characterClass.getHitDie().toString());
+        character.setLife(baseHealth);
+        character.setMoveSpeed(10 + character.getDexterity());
+        character.setInitiative(character.getDexterity());
+        character.setArmorClass(10 + character.getDexterity());
+        character.setLevel(1);
+
         return save(character);
     }
 
-    public Character updateAttributes(Long idCharacter, AttributesDTO attributes) {
-        Character character = characterRepository.findById(idCharacter).orElse(null);
-
+    private void updateAttributes(Character character, FinalStepDTO finalStepDTO) {
         if(Objects.nonNull(character)) {
             addRaceAttributes(character);
 
-            if(Objects.nonNull(attributes)) {
-                character.sumAttributes(attributes.getIntelligence(),
-                        attributes.getStrength(),
-                        attributes.getConstitution(),
-                        attributes.getWisdom(),
-                        attributes.getDexterity(),
-                        attributes.getCharisma());
+            if(Objects.nonNull(finalStepDTO)) {
+                character.sumAttributes(finalStepDTO.getIntelligence(),
+                        finalStepDTO.getStrength(),
+                        finalStepDTO.getConstitution(),
+                        finalStepDTO.getWisdom(),
+                        finalStepDTO.getDexterity(),
+                        finalStepDTO.getCharisma());
             }
         }
+    }
 
-        return save(character);
+    public void deleteCharacter(Long idCharacter) {
+        try {
+            Inventory inventory = inventoryService.findByCharacterId(idCharacter);
+            if (Objects.nonNull(inventory)) {
+                inventoryService.removeAllItems(inventory.getId());
+                inventoryService.delete(inventory.getId());
+            }
+
+            delete(idCharacter);
+        } catch (Exception e) {
+            throw new GameRuleException("Error deleting character: " + e.getMessage());
+        }
     }
 }

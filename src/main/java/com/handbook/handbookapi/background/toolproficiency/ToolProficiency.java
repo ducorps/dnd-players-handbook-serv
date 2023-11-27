@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_tool_proficiencies")
+@SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_tool_proficiencies", allocationSize = 1)
 public class ToolProficiency extends AbstractEntity {
 
     @Column(name = "tool_proficiency_type")
