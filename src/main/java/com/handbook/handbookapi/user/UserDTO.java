@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -17,6 +18,9 @@ public class UserDTO {
     private Set<Role> roles = new HashSet<>();
 
     public static UserDTO fromEntity(User user) {
+        if (Objects.isNull(user)) {
+            return null;
+        }
         UserDTO dto = new UserDTO();
         dto.setUsername(user.getUsername());
         dto.setEmail(user.getEmail());

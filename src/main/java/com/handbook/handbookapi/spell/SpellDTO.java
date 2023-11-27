@@ -5,6 +5,7 @@ import com.handbook.handbookapi.spell.component.ComponentDTO;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
@@ -20,6 +21,10 @@ public class SpellDTO {
     private List<ComponentDTO> components;
 
     public static SpellDTO fromEntity(Spell spell) {
+        if (Objects.isNull(spell)) {
+            return null;
+        }
+
         SpellDTO dto = new SpellDTO();
         dto.setName(spell.getName());
         dto.setCastingTime(spell.getCastingTime());

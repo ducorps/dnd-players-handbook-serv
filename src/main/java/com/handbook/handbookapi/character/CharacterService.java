@@ -48,7 +48,7 @@ public class CharacterService extends AbstractService<Character, Long> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        return characterRepository.findAll(QCharacter.character.user.id.eq(userDetails.getId()), pageable);
+        return characterRepository.findAllTeste(QCharacter.character.user.id.eq(userDetails.getId()), pageable);
     }
 
     public List<Character> findAll() {

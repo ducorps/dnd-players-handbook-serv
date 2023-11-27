@@ -77,12 +77,12 @@ public class CharacterDTO {
         Character character = new Character();
 
         character.setName(character.getName());
-        character.setBackground(this.toEntity().getBackground());
-        character.setUser(this.toEntity().getUser());
-        character.setSkill(this.toEntity().getSkill());
-        character.setLanguages(this.toEntity().getLanguages());
-        character.setSpells(this.toEntity().getSpells());
-        character.setRace(this.toEntity().getRace());
+        character.setBackground(this.getBackground().toEntity());
+        character.setUser(this.getUser().toEntity());
+        character.setSkill(this.getSkill().toEntity());
+        character.setLanguages(this.getLanguages().stream().map(LanguageDTO::toEntity).collect(Collectors.toList()));
+        character.setSpells(this.getSpells().stream().map(SpellDTO::toEntity).collect(Collectors.toList()));
+        character.setRace(this.getRace().toEntity());
         character.setExperience(character.getExperience());
         character.setProficiency(character.getProficiency());
         character.setArmorClass(character.getArmorClass());
@@ -91,7 +91,7 @@ public class CharacterDTO {
         character.setLife(character.getLife());
         character.setTemporaryLife(character.getTemporaryLife());
         character.setDescription(character.getDescription());
-        character.setClassType(this.toEntity().getClassType());
+        character.setClassType(this.getClassType().toEntity());
         character.setLevel(character.getLevel());
         character.setIntelligence(character.getIntelligence());
         character.setStrength(character.getStrength());
