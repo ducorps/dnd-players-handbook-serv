@@ -26,7 +26,7 @@ public class ItemService extends AbstractService<Item, Long> {
 
     public Double getSumOfAllInventoryItems(Long inventoryId) {
         return itemRepository
-                .findAll(QItem.item.inventory.id.eq(inventoryId))
+                .findAll(QItem.item.inventories.any().id.eq(inventoryId))
                 .stream().mapToDouble(Item::getWeight)
                 .sum();
     }

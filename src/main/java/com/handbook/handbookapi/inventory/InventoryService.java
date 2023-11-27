@@ -1,8 +1,8 @@
 package com.handbook.handbookapi.inventory;
 
+import com.handbook.handbookapi.character.CharacterDTO;
 import com.handbook.handbookapi.exceptions.GameRuleException;
 import com.handbook.handbookapi.character.Character;
-import com.handbook.handbookapi.exceptions.GameRuleException;
 import com.handbook.handbookapi.exceptions.MaximumWeightException;
 import com.handbook.handbookapi.inventory.item.Item;
 import com.handbook.handbookapi.inventory.item.ItemDTO;
@@ -12,17 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import springfox.documentation.spring.web.json.Json;
+
+import java.util.*;
+
 
 import java.util.LinkedHashMap;
 import java.util.Objects;
-import org.springframework.web.client.RestTemplate;
-import springfox.documentation.spring.web.json.Json;
 
-import java.util.LinkedHashMap;
-import java.util.Objects;
-
-import java.util.Objects;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import com.handbook.handbookapi.user.UserDetailsImpl;
 
 @Service
 public class InventoryService extends AbstractService<Inventory, Long> {
@@ -50,6 +49,14 @@ public class InventoryService extends AbstractService<Inventory, Long> {
         }
 
         return super.save(inventory);
+    }
+
+    public List<Inventory> findAll() {
+        return inventoryRepository.findAll();
+    }
+
+    public List<Inventory> findAllByCharacterId(Long idCharacter) {
+        return inventoryRepository.findAll(QInventory.inventory.character.id.eq(idCharacter));
     }
 
     public Inventory createNewInventory(Character characterSaved) {
