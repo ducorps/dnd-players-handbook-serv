@@ -37,6 +37,7 @@ public class CharacterService extends AbstractService<Character, Long> {
     @Autowired
     private CharacterRepository characterRepository;
 
+    @Autowired
     private BackgroundService backgroundService;
 
     @Autowired
@@ -69,8 +70,10 @@ public class CharacterService extends AbstractService<Character, Long> {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         User user = new User();
-
         user.setId(userDetails.getId());
+
+        Skill skill = new Skill(0);
+        character.setSkill(skill);
 
         character.setUser(user);
         character.setAllAttributes(0);
@@ -172,12 +175,12 @@ public class CharacterService extends AbstractService<Character, Long> {
 
         listSkills.forEach(skillName -> {
             try {
-                Field field = skill.getClass().getDeclaredField(skillName);
+                Field field = skill.getClass().getDeclaredField(skillName.toLowerCase());
                 field.setAccessible(true);
 
-                Integer fieldValue = field.getInt(skill);
-                field.setInt(skill, fieldValue + character.getProficiency());
-            } catch (NoSuchFieldException | IllegalAccessException e) {
+                Integer fieldValue = (Integer) field.get(skill);
+                field.set(skill, fieldValue + character.getProficiency());
+            } catch (Exception e) {
                 throw new GameRuleException("Não foi possível adicionar a skill " + skillName);
             }
         });
@@ -191,6 +194,14 @@ public class CharacterService extends AbstractService<Character, Long> {
         if(Objects.nonNull(languages)) {
             character.setLanguages(languages);
         }
+        return save(character);
+    }
+
+    public Character updateCharacterProficiency(Long idCharacter, Skill skill) {
+        Character character = getById(idCharacter);
+
+        character.setSkill(skill);
+
         return save(character);
     }
 }

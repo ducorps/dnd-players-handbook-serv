@@ -33,7 +33,7 @@ public class SkillDTO {
         }
         SkillDTO dto = new SkillDTO();
         dto.setAcrobatics(skill.getAcrobatics());
-        dto.setAnimalHandling(skill.getAnimalHandling());
+        dto.setAnimalHandling(skill.getAnimalhandling());
         dto.setArcana(skill.getArcana());
         dto.setAthletics(skill.getAthletics());
         dto.setPerformance(skill.getPerformance());
@@ -44,7 +44,7 @@ public class SkillDTO {
         dto.setNature(skill.getNature());
         dto.setPerception(skill.getPerception());
         dto.setPersuasion(skill.getPersuasion());
-        dto.setSleightOfHand(skill.getSleightOfHand());
+        dto.setSleightOfHand(skill.getSleightofhand());
         dto.setInvestigation(skill.getInvestigation());
         dto.setReligion(skill.getReligion());
         dto.setInsight(skill.getInsight());
@@ -57,7 +57,7 @@ public class SkillDTO {
     public Skill toEntity() {
         Skill skill = new Skill();
         skill.setAcrobatics(this.getAcrobatics());
-        skill.setAnimalHandling(this.getAnimalHandling());
+        skill.setAnimalhandling(this.getAnimalHandling());
         skill.setArcana(this.getArcana());
         skill.setAthletics(this.getAthletics());
         skill.setPerformance(this.getPerformance());
@@ -68,7 +68,7 @@ public class SkillDTO {
         skill.setNature(this.getNature());
         skill.setPerception(this.getPerception());
         skill.setPersuasion(this.getPersuasion());
-        skill.setSleightOfHand(this.getSleightOfHand());
+        skill.setSleightofhand(this.getSleightOfHand());
         skill.setInvestigation(this.getInvestigation());
         skill.setReligion(this.getReligion());
         skill.setInsight(this.getInsight());

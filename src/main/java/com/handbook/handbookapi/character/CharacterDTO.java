@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Setter
 public class CharacterDTO {
 
+    private Long id;
     private String name;
     private BackgroundDTO background;
     private UserDTO user;
@@ -48,6 +49,7 @@ public class CharacterDTO {
     public static CharacterDTO fromEntity(Character character) {
         CharacterDTO dto = new CharacterDTO();
 
+        dto.setId(character.getId());
         dto.setName(character.getName());
         dto.setBackground(BackgroundDTO.fromEntity(character.getBackground()));
         dto.setUser(UserDTO.fromEntity(character.getUser()));
