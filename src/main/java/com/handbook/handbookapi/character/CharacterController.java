@@ -5,6 +5,8 @@ import com.handbook.handbookapi.background.BackgroundType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.net.URI;
 import java.util.List;
@@ -22,9 +24,11 @@ public class CharacterController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity findAllByUserId() {
-        List<Character> character = characterService.findAllByUserId();
-        return ResponseEntity.ok(character);
+    public ResponseEntity findAllByUserId(@RequestParam(defaultValue = "0") int page,
+                                          @RequestParam(defaultValue = "10") int size) {
+        Page<Character> characters = characterService.findAllByUserId(PageRequest.of(page, size));
+        Page<CharacterDTO> characterDTOS = CharacterDTO.fromEntity(characters);
+        return ResponseEntity.ok(characterDTOS);
     }
 
     @GetMapping("/{idCharacter}")

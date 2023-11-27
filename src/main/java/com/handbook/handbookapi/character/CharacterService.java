@@ -17,6 +17,8 @@ import com.handbook.handbookapi.user.UserDetailsImpl;
 import com.handbook.handbookapi.utils.ModifierUtils;
 import com.mysema.commons.lang.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,11 +44,11 @@ public class CharacterService extends AbstractService<Character, Long> {
     @Override
     protected JpaRepository<Character, Long> getRepository() { return characterRepository; }
 
-    public List<Character> findAllByUserId() {
+    public Page<Character> findAllByUserId(Pageable pageable) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        return characterRepository.findAll(QCharacter.character.user.id.eq(userDetails.getId()));
+        return characterRepository.findAll(QCharacter.character.user.id.eq(userDetails.getId()), pageable);
     }
 
     public List<Character> findAll() {
