@@ -94,7 +94,7 @@ public class CharacterService extends AbstractService<Character, Long> {
             throw new GameRuleException("Race not found");
         }
         character.setRace(raceSaved);
-        addRaceAttributes(character);
+        //addRaceAttributes(character);
 
         validateAttributes(character);
 
@@ -217,13 +217,17 @@ public class CharacterService extends AbstractService<Character, Long> {
     public Character updateAttributes(Long idCharacter, AttributesDTO attributes) {
         Character character = characterRepository.findById(idCharacter).orElse(null);
 
-        if(Objects.nonNull(attributes)) {
-            character.sumAttributes(attributes.getIntelligence(),
-                    attributes.getStrength(),
-                    attributes.getConstitution(),
-                    attributes.getWisdom(),
-                    attributes.getDexterity(),
-                    attributes.getCharisma());
+        if(Objects.nonNull(character)) {
+            addRaceAttributes(character);
+
+            if(Objects.nonNull(attributes)) {
+                character.sumAttributes(attributes.getIntelligence(),
+                        attributes.getStrength(),
+                        attributes.getConstitution(),
+                        attributes.getWisdom(),
+                        attributes.getDexterity(),
+                        attributes.getCharisma());
+            }
         }
 
         return save(character);
