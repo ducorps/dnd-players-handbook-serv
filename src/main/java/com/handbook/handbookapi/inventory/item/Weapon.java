@@ -1,5 +1,6 @@
 package com.handbook.handbookapi.inventory.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.inventory.Inventory;
 import com.handbook.handbookapi.value.Value;
@@ -19,6 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SequenceGenerator(name = AbstractEntity.SEQUENCE_GENERATOR, sequenceName = "seq_weapons")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Weapon extends Item {
 
     @Column(name = "damage", nullable = false)
