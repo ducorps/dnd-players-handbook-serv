@@ -240,6 +240,7 @@ public class CharacterService extends AbstractService<Character, Long> {
         character.setMoveSpeed(10 + character.getDexterity());
         character.setInitiative(character.getDexterity());
         character.setArmorClass(10 + character.getDexterity());
+        character.setLevel(1);
 
         return save(character);
     }
