@@ -19,9 +19,10 @@ public class CharacterController {
     private CharacterService characterService;
 
     @GetMapping
-    public ResponseEntity findAll() {
+    public ResponseEntity<List<CharacterDTO>> findAll() {
         List<Character> characters = characterService.findAll();
-        return ResponseEntity.ok(characters);
+        List<CharacterDTO> characterDTOS = CharacterDTO.fromEntity(characters);
+        return ResponseEntity.ok(characterDTOS);
     }
 
     @GetMapping("/user")
@@ -33,57 +34,65 @@ public class CharacterController {
     }
 
     @GetMapping("/{idCharacter}")
-    public ResponseEntity findByCharacterId(@PathVariable("idCharacter") Long idCharacter) {
-        Character character = characterService.getById(idCharacter);
+    public ResponseEntity<CharacterDTO> findByCharacterId(@PathVariable("idCharacter") Long idCharacter) {
+        Character saved = characterService.getById(idCharacter);
+        CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
 
-        return ResponseEntity.ok(character);
+        return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("/new-character")
-    public ResponseEntity<Character> create() {
+    public ResponseEntity<CharacterDTO> create() {
         Character saved = characterService.createCharacter();
+        CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
 
-        return ResponseEntity.ok(saved);
+        return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("{idCharacter}/race")
-    public ResponseEntity<Character> updateCharacterRace(@PathVariable("idCharacter") Long idCharacter, @RequestBody Race race) {
+    public ResponseEntity<CharacterDTO> updateCharacterRace(@PathVariable("idCharacter") Long idCharacter, @RequestBody Race race) {
         Character saved = characterService.updateCharacterRace(idCharacter, race);
-        return ResponseEntity.ok(saved);
+        CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
+        return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("/{idCharacter}/class")
-    public ResponseEntity<Character> updateCharacterClass(@PathVariable("idCharacter") Long idCharacter, @RequestBody CharacterClass characterClass) {
+    public ResponseEntity<CharacterDTO> updateCharacterClass(@PathVariable("idCharacter") Long idCharacter, @RequestBody CharacterClass characterClass) {
         Character saved = characterService.updateCharacterClass(idCharacter, characterClass);
-        return ResponseEntity.ok(saved);
+        CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
+        return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("/{idCharacter}/background")
-    public ResponseEntity updateCharacterBackground(@PathVariable("idCharacter") Long idCharacter, @RequestBody Background background) {
+    public ResponseEntity<CharacterDTO> updateCharacterBackground(@PathVariable("idCharacter") Long idCharacter, @RequestBody Background background) {
         Character saved = characterService.updateBackground(idCharacter, background);
+        CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
 
-        return ResponseEntity.ok(saved);
+        return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("/{idCharacter}/language")
-    public ResponseEntity<Character> updateLanguages(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<Language> languages){
+    public ResponseEntity<CharacterDTO> updateLanguages(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<Language> languages){
        Character saved = characterService.updateLanguages(idCharacter, languages);
+       CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
 
-       return ResponseEntity.ok(saved);
+       return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("/{idCharacter}/skill")
-    public ResponseEntity<Character> updateSkills(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<String> skills){
+    public ResponseEntity<CharacterDTO> updateSkills(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<String> skills){
         Character saved = characterService.updateSkills(idCharacter, skills);
+        CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
 
-        return ResponseEntity.ok(saved);
+        return ResponseEntity.ok(characterDTO);
     }
 
     @PostMapping("/{idCharacter}/final-step")
-    public ResponseEntity updateFinalStep(@PathVariable("idCharacter") Long idCharacter,  @RequestBody FinalStepDTO finalStepDTO) {
+    public ResponseEntity<CharacterDTO> updateFinalStep(@PathVariable("idCharacter") Long idCharacter,  @RequestBody FinalStepDTO finalStepDTO) {
         Character saved = characterService.updateFinalStep(idCharacter, finalStepDTO);
+        CharacterDTO characterDTO = CharacterDTO.fromEntity(saved);
 
-        return ResponseEntity.ok(saved);
+        return ResponseEntity.ok(characterDTO);
     }
 
     @DeleteMapping("{idCharacter}")
