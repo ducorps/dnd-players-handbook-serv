@@ -1,10 +1,12 @@
 package com.handbook.handbookapi.character;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.characterclass.ICharacterClass;
 import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.character.race.Race;
+import com.handbook.handbookapi.character.race.RaceType;
 import com.handbook.handbookapi.common.AbstractEntity;
 import com.handbook.handbookapi.skill.Skill;
 import com.handbook.handbookapi.spell.Spell;
@@ -30,18 +32,22 @@ public class Character extends AbstractEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "background_id")
     private Background background;
 
-    @ManyToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "skill_id")
     private Skill skill;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "character_languages",
@@ -49,6 +55,7 @@ public class Character extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "language_id"))
     private List<Language> languages;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "character_spells",
@@ -56,7 +63,8 @@ public class Character extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "spell_id"))
     private List<Spell> spells;
 
-    @OneToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "race_id")
     private Race race;
 
@@ -78,36 +86,40 @@ public class Character extends AbstractEntity {
     @Column(name = "life")
     private Integer life;
 
+    @Column(name = "hit_die")
+    private String hitDie;
+
     @Column(name = "temporary_life")
     private Integer temporaryLife;
 
     @Column(name = "description")
     private String description;
 
-    @OneToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "class_id")
-    private CharacterClass classType;
+    private CharacterClass characterClass;
 
     @Column(name = "level")
     private Integer level;
 
     @Column(name = "intelligence")
-    private Integer intelligence;
+    private Integer intelligence = 0;
 
     @Column(name = "strength")
-    private Integer strength;
+    private Integer strength = 0;
 
     @Column(name = "constitution")
-    private Integer constitution;
+    private Integer constitution = 0;
 
     @Column(name = "wisdom")
-    private Integer wisdom;
+    private Integer wisdom = 0;
 
     @Column(name = "dexterity")
-    private Integer dexterity;
+    private Integer dexterity = 0;
 
     @Column(name = "charisma")
-    private Integer charisma;
+    private Integer charisma = 0;
 
     @Column(name = "is_completed")
     private Boolean isCompleted = Boolean.FALSE;

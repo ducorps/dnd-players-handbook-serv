@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RaceRepository extends JpaRepository<Race, Long>, CustomQuerydslPredicateExecutor<Race> {
+    Race findByRaceType(RaceType raceType);
 }

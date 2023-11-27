@@ -24,6 +24,7 @@ public enum ToolProficiencyType {
     FORGERY_KIT,
     DICE_SET,
     DRAGONCHESS_SET,
+    GAMING_SET,
     PLAYING_CARD_SET,
     THREE_DRAGON_ANTE_SET,
     HERBALISM_KIT,
@@ -40,5 +41,7 @@ public enum ToolProficiencyType {
     VIOL,
     VEHICLES_AIR,
     VEHICLES_LAND,
-    VEHICLES_WATER
+    VEHICLES_WATER,
+    MUSICAL_INSTRUMENT,
+    ARTISANS_TOOLS,
 }

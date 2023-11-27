@@ -16,4 +16,9 @@ public class Die {
     public Integer roll() {
         return random.nextInt(sides) + 1;
     }
+
+    @Override
+    public String toString() {
+        return "1d" + sides;
+    }
 }

@@ -1,7 +1,12 @@
 package com.handbook.handbookapi.character;
 
+import com.handbook.handbookapi.background.Background;
+import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.language.Language;
 import com.handbook.handbookapi.background.BackgroundType;
+import com.handbook.handbookapi.character.race.Race;
+import com.handbook.handbookapi.character.race.RaceDTO;
+import com.handbook.handbookapi.character.race.RaceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,16 +51,22 @@ public class CharacterController {
     }
 
     @PostMapping("{idCharacter}/race")
-    public ResponseEntity<Character> saveRace(@RequestBody Character character) {
-        Character saved = characterService.save(character);
-        return ResponseEntity.created(URI.create("/characters/" + saved.getId())).body(saved);
+    public ResponseEntity<Character> updateCharacterRace(@PathVariable("idCharacter") Long idCharacter, @RequestBody Race race) {
+        Character saved = characterService.updateCharacterRace(idCharacter, race);
+        return ResponseEntity.ok(saved);
+    }
+
+    @PostMapping("/{idCharacter}/class")
+    public ResponseEntity<Character> updateCharacterClass(@PathVariable("idCharacter") Long idCharacter, @RequestBody CharacterClass characterClass) {
+        Character saved = characterService.updateCharacterClass(idCharacter, characterClass);
+        return ResponseEntity.ok(saved);
     }
 
     @PostMapping("/{idCharacter}/background")
-    public ResponseEntity saveBackgroundByType(@PathVariable("idCharacter") Long idCharacter, @RequestBody BackgroundType backgroundType) {
-        Character character = characterService.updateBackground(idCharacter, backgroundType);
+    public ResponseEntity updateCharacterBackground(@PathVariable("idCharacter") Long idCharacter, @RequestBody Background background) {
+        Character saved = characterService.updateBackground(idCharacter, background);
 
-        return ResponseEntity.ok(character);
+        return ResponseEntity.ok(saved);
     }
 
     @PostMapping("/{idCharacter}/language")
