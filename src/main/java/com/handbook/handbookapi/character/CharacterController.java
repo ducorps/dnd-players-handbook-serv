@@ -79,4 +79,19 @@ public class CharacterController {
 
         return ResponseEntity.ok(saved);
     }
+
+    @PostMapping("/{idCharacter}/name")
+    public ResponseEntity addName(@PathVariable("idCharacter") Long idCharacter, @RequestBody String name) {
+        Character saved = characterService.addName(idCharacter, name);
+
+        return ResponseEntity.ok(saved);
+    }
+
+    @PostMapping("/{idCharacter}/attribute")
+    public ResponseEntity updateAttributes(@PathVariable("idCharacter") Long idCharacter, @RequestBody AttributesDTO attributes) {
+        Character saved = characterService.updateAttributes(idCharacter, attributes);
+
+        return ResponseEntity.ok(saved);
+    }
+
 }

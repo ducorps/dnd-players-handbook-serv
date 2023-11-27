@@ -1,7 +1,12 @@
 package com.handbook.handbookapi.character;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 
+@Getter
+@Setter
 public class AttributesDTO {
     private Integer intelligence;
     private Integer strength;
