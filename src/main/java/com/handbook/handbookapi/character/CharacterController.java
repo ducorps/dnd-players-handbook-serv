@@ -3,17 +3,14 @@ package com.handbook.handbookapi.character;
 import com.handbook.handbookapi.background.Background;
 import com.handbook.handbookapi.character.characterclass.CharacterClass;
 import com.handbook.handbookapi.character.language.Language;
-import com.handbook.handbookapi.background.BackgroundType;
 import com.handbook.handbookapi.character.race.Race;
-import com.handbook.handbookapi.character.race.RaceDTO;
-import com.handbook.handbookapi.character.race.RaceType;
+import com.handbook.handbookapi.skill.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 @RestController
 @RequestMapping("/characters")
@@ -74,5 +71,12 @@ public class CharacterController {
        Character saved = characterService.addLanguages(idCharacter, languages);
 
        return ResponseEntity.ok(saved);
+    }
+
+    @PostMapping("/{idCharacter}/skill")
+    public ResponseEntity<Character> addSkill(@PathVariable("idCharacter") Long idCharacter, @RequestBody List<String> skills){
+        Character saved = characterService.addSkills(idCharacter, skills);
+
+        return ResponseEntity.ok(saved);
     }
 }

@@ -24,7 +24,7 @@ public class Skill extends AbstractEntity {
     private Integer acrobatics;
 
     @Column(name = "animal_handling", nullable = false)
-    private Integer animalHandling;
+    private Integer animalhandling;
 
     @Column(name = "arcana", nullable = false)
     private Integer arcana;
@@ -57,7 +57,7 @@ public class Skill extends AbstractEntity {
     private Integer persuasion;
 
     @Column(name = "sleight_of_hand", nullable = false)
-    private Integer sleightOfHand;
+    private Integer sleightofhand;
 
     @Column(name = "investigation", nullable = false)
     private Integer investigation;
@@ -73,4 +73,25 @@ public class Skill extends AbstractEntity {
 
     @Column(name = "deception", nullable = false)
     private Integer deception;
+
+    public Skill (Integer startValue) {
+        this.acrobatics = startValue;
+        this.animalhandling = startValue;
+        this.arcana = startValue;
+        this.athletics = startValue;
+        this.performance = startValue;
+        this.stealth = startValue;
+        this.history = startValue;
+        this.intimidation = startValue;
+        this.medicine = startValue;
+        this.nature = startValue;
+        this.perception = startValue;
+        this.persuasion = startValue;
+        this.sleightofhand = startValue;
+        this.investigation = startValue;
+        this.religion = startValue;
+        this.insight = startValue;
+        this.survival = startValue;
+        this.deception = startValue;
+    }
 }
