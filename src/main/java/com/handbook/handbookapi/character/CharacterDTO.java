@@ -36,7 +36,7 @@ public class CharacterDTO {
     private Integer life;
     private Integer temporaryLife;
     private String description;
-    private CharacterClassDTO classType;
+    private CharacterClassDTO characterClass;
     private Integer level;
     private Integer intelligence;
     private Integer strength;
@@ -63,7 +63,7 @@ public class CharacterDTO {
         dto.setLife(character.getLife());
         dto.setTemporaryLife(character.getTemporaryLife());
         dto.setDescription(character.getDescription());
-        dto.setClassType(CharacterClassDTO.fromEntity(character.getCharacterClass()));
+        dto.setCharacterClass(CharacterClassDTO.fromEntity(character.getCharacterClass()));
         dto.setLevel(character.getLevel());
         dto.setIntelligence(character.getIntelligence());
         dto.setStrength(character.getStrength());
