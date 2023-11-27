@@ -3,14 +3,10 @@ package com.handbook.handbookapi.inventory.item;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.handbook.handbookapi.value.CurrencyType;
 import com.handbook.handbookapi.value.Value;
-import com.handbook.handbookapi.value.ValueService;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import springfox.documentation.spring.web.json.Json;
 
-import javax.persistence.Enumerated;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -21,6 +17,7 @@ public class ItemDTO {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Value value;
+    private Long id;
     private String name;
     private Integer weight;
     private String type;
@@ -42,6 +39,7 @@ public class ItemDTO {
 
     public static ItemDTO fromEntity(Item item) {
         ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setId(item.getId());
         itemDTO.setName(item.getName());
         itemDTO.setWeight(item.getWeight());
         itemDTO.setType("ITEM");
