@@ -4,6 +4,8 @@ import com.handbook.handbookapi.character.ClassType;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class CharacterClassDTO {
@@ -11,6 +13,9 @@ public class CharacterClassDTO {
     private ClassType classType;
 
     public static CharacterClassDTO fromEntity(CharacterClass characterClass) {
+        if(Objects.isNull(characterClass)) {
+            return null;
+        }
         CharacterClassDTO dto = new CharacterClassDTO();
         dto.setClassType(characterClass.getClassType());
 

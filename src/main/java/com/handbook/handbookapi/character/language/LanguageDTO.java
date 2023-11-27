@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
@@ -12,6 +13,9 @@ public class LanguageDTO {
     private LanguageType languageType;
 
     public static LanguageDTO fromEntity(Language language) {
+        if (Objects.isNull(language)) {
+            return null;
+        }
         LanguageDTO dto = new LanguageDTO();
         dto.setLanguageType(language.getLanguageType());
 
